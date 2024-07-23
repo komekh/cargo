@@ -19,7 +19,21 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<AuthenticationResponseModel> signIn(SignInParams params) async {
     debugPrint('signIn');
-    final response = await client.post(Uri.parse('$baseUrl/authentication/local/sign-in'),
+
+    const data = '''
+                {
+                  "token": "exampleToken123",
+                  "user": {
+                    "_id": "user123",
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "email": "john.doe@example.com"
+                  }
+                }
+                ''';
+
+    return authenticationResponseModelFromJson(data);
+    /* final response = await client.post(Uri.parse('$baseUrl/authentication/local/sign-in'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -33,7 +47,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       throw CredentialFailure();
     } else {
       throw ServerException();
-    }
+    } */
   }
 
   @override

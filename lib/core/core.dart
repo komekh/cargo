@@ -6,3 +6,4 @@ export 'observer/observer.dart';
 export 'usecases/usecases.dart';
 export 'networkchecker/network_info.dart';
 export 'utils/utils.dart';
+export 'enums/enums.dart';

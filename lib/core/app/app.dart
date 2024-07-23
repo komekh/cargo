@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
@@ -13,15 +14,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => di.sl<NavigationCubit>()),
         BlocProvider(
-          create: (context) => di.sl<UserBloc>()..add(CheckUser()),
+          create: (context) => di.sl<UserBloc>(), //..add(CheckUser()),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: appTitle,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: AppRouter.splash,
+        onGenerateInitialRoutes: (initialRoute) => AppRouter.generateInitialRoutes(initialRoute),
+        initialRoute: AppRouter.root,
       ),
     );
   }

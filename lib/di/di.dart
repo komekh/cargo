@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'common.dart';
+import 'cubits.dart';
 import 'user.dart';
 
 final sl = GetIt.instance;
@@ -16,7 +17,7 @@ Future<void> init() async {
   // registerOrderFeature();
 
   // Register Cubits
-  // registerCubits();
+  registerCubits();
 
   // Register common dependencies
   registerCommonDependencies();

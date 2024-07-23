@@ -4,10 +4,10 @@ import '../../presentation/presentation.dart';
 import '../errors/exceptions.dart';
 
 sealed class AppRouter {
-  static const String splash = '/';
+  static const String splash = '/splash';
   static const String splash2 = '/splash2';
   static const String login = '/login';
-  // static const String root = '/root';
+  static const String root = '/root';
   // static const String productDetails = '/product-details';
   // static const String search = '/search';
   // static const String filter = '/filter';
@@ -34,8 +34,8 @@ sealed class AppRouter {
         return MaterialPageRoute(builder: (_) => const Splash2Screen());
       case login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-      // case root:
-      //   return MaterialPageRoute(builder: (_) => const RootScreen());
+      case root:
+        return MaterialPageRoute(builder: (_) => const RootScreen());
       // case search:
       //   return MaterialPageRoute(builder: (_) => const SearchScreen());
       // case filter:
@@ -83,5 +83,17 @@ sealed class AppRouter {
       default:
         throw const RouteException('Route not found!');
     }
+  }
+
+  static List<Route<dynamic>> generateInitialRoutes(String initialRoute) {
+    debugPrint('generateInitialRoutes $initialRoute');
+
+    return [
+      MaterialPageRoute(builder: (context) => const RootScreen()),
+      if (initialRoute != AppRouter.root)
+        MaterialPageRoute(
+          builder: (context) => const SplashScreen(),
+        ),
+    ];
   }
 }

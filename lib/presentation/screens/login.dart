@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../application/user_bloc/user_bloc.dart';
-import '../../configs/app.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 import '../../domain/domain.dart';
-import '../widgets/button.dart';
+import '../widgets/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,6 +19,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  void _nextScreen() {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      AppRouter.root,
+      (route) => false,
+    );
+  }
 
   @override
   void dispose() {
@@ -82,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             /// form part
             SizedBox(
-              height: AppDimensions.normalize(145),
+              height: AppDimensions.normalize(165),
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
@@ -158,25 +164,40 @@ class _LoginScreenState extends State<LoginScreen> {
                               /// gap
                               Space.yf(),
 
-                              SizedBox(
-                                width: double.infinity,
-                                child: AppButton(
-                                  textColor: AppColors.primary,
-                                  btnColor: AppColors.yellow,
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      context.read<UserBloc>().add(
-                                            SignInUser(
-                                              SignInParams(
-                                                username: _userNameController.text,
-                                                password: _passwordController.text,
-                                              ),
-                                            ),
-                                          );
+                              BlocConsumer<UserBloc, UserState>(
+                                listener: (context, state) {
+                                  if (state is UserLogged) {
+                                    _nextScreen();
+                                  } else if (state is UserLoggedFail) {
+                                    if (state.failure is CredentialFailure) {
+                                      showCredentialErrorDialog(context);
+                                    } else {
+                                      showAuthErrorDialog(context);
                                     }
-                                  },
-                                  text: 'Yzarlap başlaň',
-                                ),
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return SizedBox(
+                                    width: double.infinity,
+                                    child: AppButton(
+                                      textColor: Colors.white,
+                                      btnColor: AppColors.primary,
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          context.read<UserBloc>().add(
+                                                SignInUser(
+                                                  SignInParams(
+                                                    username: _userNameController.text,
+                                                    password: _passwordController.text,
+                                                  ),
+                                                ),
+                                              );
+                                        }
+                                      },
+                                      text: 'Yzarlap başlaň',
+                                    ),
+                                  );
+                                },
                               )
                             ],
                           ),
