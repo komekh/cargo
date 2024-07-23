@@ -4,3 +4,4 @@ export 'credential_failure_dialog.dart';
 export 'auth_error_dialog.dart';
 export 'bottom_navbar.dart';
 export 'order_header.dart';
+export 'order_card.dart';
