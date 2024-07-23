@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../application/user_bloc/user_bloc.dart';
 import '../../configs/app.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
+import '../../domain/domain.dart';
 import '../widgets/button.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _userNameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,68 +101,85 @@ class LoginScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: Space.hf().copyWith(top: 30),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Şahsy otaga giriş',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Şahsy otaga giriş',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
 
-                            const Text(
-                              'özüňize berlen logini we açar sözi giriziň',
-                              style: TextStyle(
-                                color: Colors.grey,
+                              const Text(
+                                'özüňize berlen logini we açar sözi giriziň',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
 
-                            /// gap
-                            Space.yf(),
+                              /// gap
+                              Space.yf(),
 
-                            /// username field
-                            const Text('Login'),
-                            Space.yf(0.30),
-                            const TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Öz loginiňizi ýazyň',
-                                prefixIcon: Icon(Icons.person_outline),
-                                // suffixIcon: Icon(Icons.visibility_off),
-                                border: OutlineInputBorder(),
+                              /// username field
+                              const Text('Login'),
+                              Space.y!,
+                              TextFormField(
+                                controller: _userNameController,
+                                decoration: const InputDecoration(
+                                  hintText: 'Öz loginiňizi ýazyň',
+                                  prefixIcon: Icon(Icons.person_outline),
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (val) => FormValidator.validateField(val),
                               ),
-                            ),
 
-                            /// gap
-                            Space.yf(),
+                              /// gap
+                              Space.yf(),
 
-                            /// password field
-                            const Text('Açar sözi'),
-                            Space.yf(0.30),
-                            const TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                hintText: 'Öz açar sözüňi ýazyň',
-                                prefixIcon: Icon(Icons.lock_outline),
-                                suffixIcon: Icon(Icons.visibility_off),
-                                border: OutlineInputBorder(),
+                              /// password field
+                              const Text('Açar sözi'),
+                              Space.y!,
+                              TextFormField(
+                                controller: _passwordController,
+                                obscureText: true,
+                                decoration: const InputDecoration(
+                                  hintText: 'Öz açar sözüňi ýazyň',
+                                  prefixIcon: Icon(Icons.lock_outline),
+                                  suffixIcon: Icon(Icons.visibility_off),
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (val) => FormValidator.validateField(val),
                               ),
-                            ),
 
-                            /// gap
-                            Space.yf(),
+                              /// gap
+                              Space.yf(),
 
-                            SizedBox(
-                              width: double.infinity,
-                              child: AppButton(
-                                textColor: AppColors.primary,
-                                btnColor: AppColors.yellow,
-                                onPressed: () {},
-                                text: 'Yzarlap başlaň',
-                              ),
-                            )
-                          ],
+                              SizedBox(
+                                width: double.infinity,
+                                child: AppButton(
+                                  textColor: AppColors.primary,
+                                  btnColor: AppColors.yellow,
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      context.read<UserBloc>().add(
+                                            SignInUser(
+                                              SignInParams(
+                                                username: _userNameController.text,
+                                                password: _passwordController.text,
+                                              ),
+                                            ),
+                                          );
+                                    }
+                                  },
+                                  text: 'Yzarlap başlaň',
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
