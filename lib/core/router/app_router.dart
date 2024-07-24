@@ -8,7 +8,7 @@ sealed class AppRouter {
   static const String splash2 = '/splash2';
   static const String login = '/login';
   static const String root = '/root';
-  // static const String productDetails = '/product-details';
+  static const String orderDetails = '/order-details';
   // static const String search = '/search';
   // static const String filter = '/filter';
   // static const String signup = '/signup';
@@ -36,6 +36,9 @@ sealed class AppRouter {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case root:
         return MaterialPageRoute(builder: (_) => const RootScreen());
+      case orderDetails:
+        // ProductEntity product = routeSettings.arguments as ProductEntity;
+        return MaterialPageRoute(builder: (_) => const OrderDetailsScreen());
       // case search:
       //   return MaterialPageRoute(builder: (_) => const SearchScreen());
       // case filter:

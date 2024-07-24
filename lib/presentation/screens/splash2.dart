@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../configs/app.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 import '../presentation.dart';

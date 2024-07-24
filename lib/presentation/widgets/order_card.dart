@@ -1,4 +1,3 @@
-import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -25,10 +24,15 @@ class OrderCard extends StatelessWidget {
                   '№ABC456789',
                   style: AppText.b1b,
                 ),
-                Text(
-                  'Genişleýin >',
-                  style: AppText.b1b?.copyWith(
-                    color: AppColors.primary,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(AppRouter.orderDetails);
+                  },
+                  child: Text(
+                    'Ginişleýin >',
+                    style: AppText.b1b?.copyWith(
+                      color: AppColors.primary,
+                    ),
                   ),
                 ),
               ],
