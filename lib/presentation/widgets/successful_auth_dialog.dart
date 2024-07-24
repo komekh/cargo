@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../configs/configs.dart';
-import '../../core/core.dart';
 
 Future<void> showSuccessfulAuthDialog(BuildContext context, String text) async {
   return showDialog(

@@ -1,3 +1,4 @@
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -58,58 +59,119 @@ class OrderCard extends StatelessWidget {
             ),
 
             /// gap
-            Space.yf(0.75),
+            Space.y!,
+            const Divider(),
+            Space.y!,
 
             /// info bar
             Row(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  flex: 2,
+                  child: Row(
                     children: [
-                      Text(
-                        'Nireden:',
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF96969C),
+                      SizedBox(
+                        width: AppDimensions.normalize(15),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.check_circle,
+                              size: 16,
+                              color: Colors.green,
+                            ),
+                            SizedBox(
+                              height: AppDimensions.normalize(7),
+                              child: const VerticalDivider(
+                                color: Colors.green,
+                                width: 1,
+                                indent: 0,
+                                endIndent: 0,
+                                thickness: 2,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 16,
+                              child: Divider(
+                                thickness: 2,
+                                color: Colors.green,
+                              ),
+                            ),
+                            SizedBox(
+                              height: AppDimensions.normalize(7),
+                              child: const VerticalDivider(
+                                color: Color(0xFF96969C),
+                                thickness: 2,
+                              ),
+                            ),
+                            const Icon(
+                              Icons.check_circle,
+                              size: 16,
+                              color: Color(0xFF96969C),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        'Urumçy',
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF57575C),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Nirede:',
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF96969C),
-                        ),
-                      ),
-                      Text(
-                        'Aşgabat',
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF57575C),
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Nireden:',
+                            style: AppText.b2b!.copyWith(
+                              color: const Color(0xFF96969C),
+                            ),
+                          ),
+                          Text(
+                            'Urumçy',
+                            style: AppText.b2b!.copyWith(
+                              color: const Color(0xFF57575C),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Nirede:',
+                            style: AppText.b2b!.copyWith(
+                              color: const Color(0xFF96969C),
+                            ),
+                          ),
+                          Text(
+                            'Aşgabat',
+                            style: AppText.b2b!.copyWith(
+                              color: const Color(0xFF57575C),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+
+                  /* */
                 ),
-                const Spacer(flex: 1),
+                // const Spacer(flex: 1),
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Ýer sany:'),
                       Text(
-                        '10',
+                        'Ýer sany:',
                         style: AppText.b2b!.copyWith(
                           color: const Color(0xFF96969C),
                         ),
                       ),
+                      Text(
+                        '10',
+                        style: AppText.b2b!.copyWith(
+                          color: const Color(0xFF57575C),
+                        ),
+                      ),
                       const SizedBox(height: 8),
-                      const Text('Göwrümi:'),
+                      Text(
+                        'Göwrümi:',
+                        style: AppText.b2b!.copyWith(
+                          color: const Color(0xFF96969C),
+                        ),
+                      ),
                       Text(
                         '1472,31',
                         style: AppText.b2b!.copyWith(
@@ -119,7 +181,7 @@ class OrderCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Spacer(flex: 1),
+                // const Spacer(flex: 1),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

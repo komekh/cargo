@@ -27,3 +27,11 @@ Future<void> main() async {
 
   runApp(Phoenix(child: const MyApp()));
 }
+
+
+// 1 create bloc
+// 2 create use_case under domain folder
+// 3 create repository
+// 4 create repository implementation
+// 5 create data source
+// 6 add di register
