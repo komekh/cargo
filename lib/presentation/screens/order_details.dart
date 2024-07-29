@@ -28,7 +28,7 @@ class OrderDetailsScreen extends StatelessWidget {
           /// map
           SliverToBoxAdapter(
             child: SizedBox(
-              height: AppDimensions.normalize(140),
+              height: AppDimensions.normalize(120),
               child: const ClusteringPage(),
             ),
           ),
@@ -70,8 +70,8 @@ class OrderDetailsScreen extends StatelessWidget {
                   /// gap
                   Space.y!,
 
-                  /// info card
-                  const InfoCard(),
+                  /// location card
+                  const LocationCard()
                 ],
               ),
             ),

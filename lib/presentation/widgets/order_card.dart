@@ -50,14 +50,14 @@ class OrderCard extends StatelessWidget {
                 Text(
                   'Ýolda',
                   style: AppText.b2b!.copyWith(
-                    color: const Color(0xFF96969C),
+                    color: AppColors.grey,
                   ),
                 ),
                 const Spacer(),
                 Text(
                   'Ugradylan senesi: 16.07.2024',
                   style: AppText.b2b!.copyWith(
-                    color: const Color(0xFF96969C),
+                    color: AppColors.grey,
                   ),
                 ),
               ],
@@ -94,7 +94,7 @@ class OrderCard extends StatelessWidget {
                           Text(
                             'Nireden:',
                             style: AppText.b2b!.copyWith(
-                              color: const Color(0xFF96969C),
+                              color: AppColors.grey,
                             ),
                           ),
                           Text(
@@ -107,7 +107,7 @@ class OrderCard extends StatelessWidget {
                           Text(
                             'Nirede:',
                             style: AppText.b2b!.copyWith(
-                              color: const Color(0xFF96969C),
+                              color: AppColors.grey,
                             ),
                           ),
                           Text(
@@ -132,7 +132,7 @@ class OrderCard extends StatelessWidget {
                       Text(
                         'Ýer sany:',
                         style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF96969C),
+                          color: AppColors.grey,
                         ),
                       ),
                       Text(
@@ -145,7 +145,7 @@ class OrderCard extends StatelessWidget {
                       Text(
                         'Göwrümi:',
                         style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF96969C),
+                          color: AppColors.grey,
                         ),
                       ),
                       Text(
@@ -165,7 +165,7 @@ class OrderCard extends StatelessWidget {
                       Text(
                         'Maşyn №:',
                         style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF96969C),
+                          color: AppColors.grey,
                         ),
                       ),
                       Text(
@@ -178,7 +178,7 @@ class OrderCard extends StatelessWidget {
                       Text(
                         'Dukan №:',
                         style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF96969C),
+                          color: AppColors.grey,
                         ),
                       ),
                       Text(

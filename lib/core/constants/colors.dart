@@ -7,4 +7,5 @@ sealed class AppColors {
   static const Color green = Color(0xFFA2E052);
   static const Color grey = Color(0xFF96969C);
   static const Color darkGrey = Color(0xFF57575C);
+  static const Color lightGrey = Color(0xFFE5E5E6);
 }

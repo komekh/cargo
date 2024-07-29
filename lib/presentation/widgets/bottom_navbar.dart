@@ -42,7 +42,7 @@ class BottomNavigation extends StatelessWidget {
             iconSize: AppDimensions.normalize(12),
             selectedLabelStyle: AppText.b2b,
             unselectedLabelStyle: AppText.b2!.copyWith(
-              color: const Color(0xFF96969C),
+              color: AppColors.grey,
             ),
             backgroundColor: AppColors.surface,
           ),

@@ -8,3 +8,4 @@ export 'order_card.dart';
 export 'order_header.dart';
 export 'successful_auth_dialog.dart';
 export 'vertical_line.dart';
+export 'dashed_line.dart';
