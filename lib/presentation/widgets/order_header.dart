@@ -15,6 +15,7 @@ class OrderHeader extends StatelessWidget {
           Image.asset(
             AppAssets.header,
             fit: BoxFit.fill,
+            width: double.infinity,
           ),
           Positioned(
             top: 0,

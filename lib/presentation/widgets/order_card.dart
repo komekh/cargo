@@ -75,15 +75,19 @@ class OrderCard extends StatelessWidget {
                   flex: 2,
                   child: Row(
                     children: [
-                      SizedBox(
+                      /// vertical status line
+                      Container(
                         width: AppDimensions.normalize(15),
+                        alignment: Alignment.topLeft,
                         child: VerticalLine(
-                          width: AppDimensions.normalize(6),
-                          height: AppDimensions.normalize(40),
+                          width: AppDimensions.normalize(1),
+                          height: AppDimensions.normalize(2.5),
                           topColor: AppColors.green,
                           bottomColor: AppColors.grey,
                         ),
                       ),
+
+                      /// info
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

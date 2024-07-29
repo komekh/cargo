@@ -16,9 +16,12 @@ class VerticalLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: Size(width, height),
-      painter: VerticalLinePainter(topColor: topColor, bottomColor: bottomColor),
+    return AspectRatio(
+      aspectRatio: width / height,
+      child: CustomPaint(
+        size: Size(width, height),
+        painter: VerticalLinePainter(topColor: topColor, bottomColor: bottomColor),
+      ),
     );
   }
 }

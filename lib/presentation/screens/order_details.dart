@@ -2,6 +2,7 @@ import 'package:cargo/configs/configs.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/core.dart';
+import '../widgets/map/clustering.dart';
 import '../widgets/widgets.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
@@ -25,8 +26,11 @@ class OrderDetailsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           /// map
-          const SliverToBoxAdapter(
-            child: OrderHeader(),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: AppDimensions.normalize(140),
+              child: const ClusteringPage(),
+            ),
           ),
 
           /// info text
