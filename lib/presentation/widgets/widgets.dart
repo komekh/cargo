@@ -7,3 +7,4 @@ export 'location_card.dart';
 export 'order_card.dart';
 export 'order_header.dart';
 export 'successful_auth_dialog.dart';
+export 'vertical_line.dart';

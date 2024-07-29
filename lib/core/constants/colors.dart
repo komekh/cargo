@@ -4,6 +4,9 @@ sealed class AppColors {
   static const Color primary = Color(0xFF343FDE);
   static const Color yellow = Color(0xFFFFC71E);
   static const Color surface = Color(0xFFEDEEFC);
+  static const Color green = Color(0xFFA2E052);
+  static const Color grey = Color(0xFF96969C);
+  static const Color darkGrey = Color(0xFF57575C);
   static const Color CommonCyan = Color(0xff68C4C6);
   static const Color GreyText = Color(0xff575757);
   static const Color LightGrey = Color(0xfff1f1f1);

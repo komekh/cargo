@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
+import 'vertical_line.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({super.key});
@@ -44,7 +45,7 @@ class OrderCard extends StatelessWidget {
             /// status bar
             Row(
               children: [
-                const Icon(Icons.circle, color: Colors.green, size: 12),
+                const Icon(Icons.circle, color: AppColors.green, size: 12),
                 const SizedBox(width: 4),
                 Text(
                   'Ýolda',
@@ -76,44 +77,11 @@ class OrderCard extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: AppDimensions.normalize(15),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.check_circle,
-                              size: 16,
-                              color: Colors.green,
-                            ),
-                            SizedBox(
-                              height: AppDimensions.normalize(7),
-                              child: const VerticalDivider(
-                                color: Colors.green,
-                                width: 1,
-                                indent: 0,
-                                endIndent: 0,
-                                thickness: 2,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 16,
-                              child: Divider(
-                                thickness: 2,
-                                color: Colors.green,
-                              ),
-                            ),
-                            SizedBox(
-                              height: AppDimensions.normalize(7),
-                              child: const VerticalDivider(
-                                color: Color(0xFF96969C),
-                                thickness: 2,
-                              ),
-                            ),
-                            const Icon(
-                              Icons.check_circle,
-                              size: 16,
-                              color: Color(0xFF96969C),
-                            ),
-                          ],
+                        child: VerticalLine(
+                          width: AppDimensions.normalize(6),
+                          height: AppDimensions.normalize(40),
+                          topColor: AppColors.green,
+                          bottomColor: AppColors.grey,
                         ),
                       ),
                       Column(
