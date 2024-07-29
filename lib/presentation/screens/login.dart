@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         children: [
                           SvgPicture.asset(
-                            AppAssets.Logo,
+                            AppAssets.logo,
                             height: AppDimensions.normalize(30),
                           ),
                           Space.yf(0.80),
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Image.asset(
-                            AppAssets.TrucksPng,
+                            AppAssets.trucksPng,
                             height: AppDimensions.normalize(52),
                             width: double.infinity,
                             fit: BoxFit.fill,

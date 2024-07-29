@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
-import '../core.dart';
-
 import '../../di/di.dart' as di;
+import '../core.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

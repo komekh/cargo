@@ -13,7 +13,7 @@ class OrderHeader extends StatelessWidget {
       child: Stack(
         children: [
           Image.asset(
-            AppAssets.Header,
+            AppAssets.header,
             fit: BoxFit.fill,
           ),
           Positioned(

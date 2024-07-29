@@ -59,7 +59,7 @@ class Splash2Screen extends StatelessWidget {
 
                 /// images
                 Image.asset(
-                  AppAssets.BoxesPng,
+                  AppAssets.boxesPng,
                   height: AppDimensions.normalize(90),
                 ),
                 Space.yf(),
