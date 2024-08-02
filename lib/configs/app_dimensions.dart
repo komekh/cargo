@@ -51,7 +51,7 @@ class AppDimensions {
 
   static String inString() {
     final x = UI.width! / UI.height!;
-    final ps = ui.window.physicalSize;
+    final ps = WidgetsBinding.instance.platformDispatcher.views.first.physicalSize; //ui.window.physicalSize;
     return '''
       Width: ${UI.width} | ${ps.width}
       Height: ${UI.height} | ${ps.height}

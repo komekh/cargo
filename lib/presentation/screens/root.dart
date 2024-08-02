@@ -1,12 +1,12 @@
-import 'package:cargo/core/core.dart';
-import 'package:cargo/presentation/screens/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
 import '../../configs/configs.dart';
+import '../../core/core.dart';
 import '../widgets/bottom_navbar.dart';
+import 'screens.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -69,9 +69,9 @@ class RootScreen extends StatelessWidget {
                   case NavigationTab.categoriesTab:
                     return const Text(' CategoriesScreen()');
                   case NavigationTab.productsTap:
-                    return const Text('ProductsListScreen()');
+                    return const ProfileScreen();
                   default:
-                    return const Text('HomeScreen()');
+                    return const OrdersScreen();
                 }
               },
             ),
