@@ -15,7 +15,7 @@ class BottomNavigation extends StatelessWidget {
     return BlocBuilder<NavigationCubit, NavigationTab>(
       builder: (context, activeTab) {
         return SizedBox(
-          height: AppDimensions.normalize(27),
+          height: AppDimensions.normalize(32),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             currentIndex: activeTab.index,
