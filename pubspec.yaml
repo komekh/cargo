@@ -26,6 +26,7 @@ dependencies:
   flutter_map: ">=6.0.0 <7.0.0"
   latlong2: ^0.9.0
   flutter_map_marker_cluster: ^1.3.6
+  easy_localization: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +41,7 @@ flutter:
     - assets/svg/
     - assets/svg/logo/
     - assets/images/
+    - assets/locale/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

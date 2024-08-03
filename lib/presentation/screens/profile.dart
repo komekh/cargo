@@ -1,7 +1,6 @@
-import 'package:cargo/configs/app_typography.dart';
-import 'package:cargo/configs/space.dart';
+import 'package:cargo/presentation/presentation.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
@@ -103,15 +102,18 @@ class ProfileScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        /// identity
-                        const RowWidget(
-                          text: 'Dil saýlamak (Türkmen dili)',
-                          leadingIcon: Icons.language_outlined,
-                          trailingIcon: Icons.arrow_forward_ios,
+                        /// language
+                        GestureDetector(
+                          onTap: () => onSelectLang(context),
+                          child: Container(
+                            color: Colors.transparent,
+                            child: RowWidget(
+                              text: 'profile_select_lang'.tr(),
+                              leadingIcon: Icons.language_outlined,
+                              trailingIcon: Icons.arrow_forward_ios,
+                            ),
+                          ),
                         ),
-
-                        /// gap
-                        Space.yf(1),
 
                         /// name surname
                         const RowWidget(
@@ -119,9 +121,6 @@ class ProfileScreen extends StatelessWidget {
                           leadingIcon: Icons.gpp_maybe_outlined,
                           trailingIcon: Icons.arrow_forward_ios,
                         ),
-
-                        /// gap
-                        Space.yf(1),
 
                         /// phone
                         const RowWidget(
@@ -175,28 +174,31 @@ class RowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          leadingIcon,
-          color: AppColors.darkGrey,
-        ),
-        Space.x!,
-        Text(
-          text,
-          style: AppText.b1!.copyWith(
-            color: AppColors.darkGrey,
-          ),
-        ),
-        if (trailingIcon != null) ...[
-          const Spacer(),
+    return Padding(
+      padding: Space.vf(0.5),
+      child: Row(
+        children: [
           Icon(
-            trailingIcon,
+            leadingIcon,
             color: AppColors.darkGrey,
-            size: AppDimensions.normalize(7),
           ),
-        ]
-      ],
+          Space.x!,
+          Text(
+            text,
+            style: AppText.b1!.copyWith(
+              color: AppColors.darkGrey,
+            ),
+          ),
+          if (trailingIcon != null) ...[
+            const Spacer(),
+            Icon(
+              trailingIcon,
+              color: AppColors.darkGrey,
+              size: AppDimensions.normalize(7),
+            ),
+          ]
+        ],
+      ),
     );
   }
 }

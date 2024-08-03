@@ -1,8 +1,8 @@
-import 'package:cargo/presentation/presentation.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
+import '../widgets/widgets.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});

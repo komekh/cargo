@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'di/di.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   // await GetStorage.init();
 
@@ -25,10 +27,21 @@ Future<void> main() async {
     statusBarBrightness: Brightness.dark,
   ));
 
-  runApp(Phoenix(child: const MyApp()));
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('tr', 'TR'),
+        Locale('ru', 'RU'),
+      ],
+      path: 'assets/locale',
+      fallbackLocale: const Locale('tr', 'TR'),
+      startLocale: const Locale('tr', 'TR'),
+      child: Phoenix(child: const MyApp()),
+    ),
+  );
 }
 
-
+/// ADDING PROGRESS
 // 1 create bloc
 // 2 create use_case under domain folder
 // 3 create repository

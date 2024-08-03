@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import 'common.dart';
 import 'cubits.dart';
+import 'language.dart';
 import 'user.dart';
 
 final sl = GetIt.instance;
@@ -10,6 +11,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // Register features
   registerUserFeature();
+  registerLanguageFeature();
   // registerCategoryFeature();
   // registerProductFeature();
   // registerDeliveryInfoFeature();
