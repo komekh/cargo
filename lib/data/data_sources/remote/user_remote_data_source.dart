@@ -20,9 +20,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<AuthenticationResponseModel> signIn(SignInParams params) async {
     debugPrint('signIn');
 
-    const data = '''
+    try {
+      final response = await client.post(Uri.parse('$baseUrl/Authentication/Authenticate'),
+          headers: {
+            'Content-Type': 'application/json',
+            'accept': '*/*',
+          },
+          body: json.encode({
+            'UserName': params.username,
+            'Password': '', // params.password,
+          }));
+      if (response.statusCode == 200) {
+        const userData = '''
                 {
-                  "token": "exampleToken123",
+                  "token": "",
                   "user": {
                     "_id": "user123",
                     "firstName": "John",
@@ -31,23 +42,21 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
                   }
                 }
                 ''';
+        AuthenticationResponseModel user = authenticationResponseModelFromJson(userData);
 
-    return authenticationResponseModelFromJson(data);
-    /* final response = await client.post(Uri.parse('$baseUrl/authentication/local/sign-in'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: json.encode({
-          'identifier': params.username,
-          'password': params.password,
-        }));
-    if (response.statusCode == 200) {
-      return authenticationResponseModelFromJson(response.body);
-    } else if (response.statusCode == 400 || response.statusCode == 401) {
-      throw CredentialFailure();
-    } else {
+        // Update the token value
+        AuthenticationResponseModel updatedUser = user.copyWith(token: response.body);
+
+        return updatedUser;
+      } else if (response.statusCode == 400 || response.statusCode == 401) {
+        throw CredentialFailure();
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
+      debugPrint('e $e');
       throw ServerException();
-    } */
+    }
   }
 
   @override

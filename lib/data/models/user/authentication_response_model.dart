@@ -25,4 +25,14 @@ class AuthenticationResponseModel {
         'token': token,
         'user': user.toJson(),
       };
+
+  AuthenticationResponseModel copyWith({
+    String? token,
+    UserModel? user,
+  }) {
+    return AuthenticationResponseModel(
+      token: token ?? this.token,
+      user: user ?? this.user,
+    );
+  }
 }

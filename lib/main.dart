@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,6 +29,8 @@ Future<void> main() async {
     statusBarBrightness: Brightness.dark,
   ));
 
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [
@@ -48,3 +52,11 @@ Future<void> main() async {
 // 4 create repository implementation
 // 5 create data source
 // 6 add di register
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}

@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => di.sl<NavigationCubit>()),
         BlocProvider(
+          create: (context) => di.sl<SplashCubit>()..checkToken(),
+        ),
+        BlocProvider(
           create: (context) => di.sl<LanguageBloc>()..add(LanguageInitial()),
         ),
         BlocProvider(
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        initialRoute: AppRouter.root,
+        initialRoute: AppRouter.splash,
       ),
     );
   }

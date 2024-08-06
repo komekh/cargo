@@ -9,6 +9,38 @@ sealed class AppRouter {
   static const String login = '/login';
   static const String root = '/root';
   static const String orderDetails = '/order-details';
+
+  static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
+    debugPrint('onGenerateRoute ${routeSettings.name}');
+    switch (routeSettings.name) {
+      case splash:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case splash2:
+        return MaterialPageRoute(builder: (_) => const Splash2Screen());
+      case login:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case root:
+        return MaterialPageRoute(builder: (_) => const RootScreen());
+      case orderDetails:
+        return MaterialPageRoute(builder: (_) => const OrderDetailsScreen());
+
+      default:
+        throw const RouteException('Route not found!');
+    }
+  }
+
+  static List<Route<dynamic>> generateInitialRoutes(String initialRoute) {
+    debugPrint('generateInitialRoutes $initialRoute');
+
+    return [
+      MaterialPageRoute(
+        builder: (context) => initialRoute == AppRouter.root ? const RootScreen() : const SplashScreen(),
+      ),
+    ];
+  }
+}
+
+
   // static const String search = '/search';
   // static const String filter = '/filter';
   // static const String signup = '/signup';
@@ -25,21 +57,8 @@ sealed class AppRouter {
   // static const String orders = '/orders';
   // static const String notifications = '/notifications';
 
-  static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
-    debugPrint('onGenerateRoute ${routeSettings.name}');
-    switch (routeSettings.name) {
-      case splash:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
-      case splash2:
-        return MaterialPageRoute(builder: (_) => const Splash2Screen());
-      case login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
-      case root:
-        return MaterialPageRoute(builder: (_) => const RootScreen());
-      case orderDetails:
-        // ProductEntity product = routeSettings.arguments as ProductEntity;
-        return MaterialPageRoute(builder: (_) => const OrderDetailsScreen());
-      // case search:
+
+     // case search:
       //   return MaterialPageRoute(builder: (_) => const SearchScreen());
       // case filter:
       //   return MaterialPageRoute(builder: (_) => const FilterScreen());
@@ -83,20 +102,3 @@ sealed class AppRouter {
       //   return MaterialPageRoute(builder: (_) => const OrdersScreen());
       // case notifications:
       //   return MaterialPageRoute(builder: (_) => const NotificationsScreen());
-      default:
-        throw const RouteException('Route not found!');
-    }
-  }
-
-  static List<Route<dynamic>> generateInitialRoutes(String initialRoute) {
-    debugPrint('generateInitialRoutes $initialRoute');
-
-    return [
-      MaterialPageRoute(builder: (context) => const RootScreen()),
-      if (initialRoute != AppRouter.root)
-        MaterialPageRoute(
-          builder: (context) => const SplashScreen(),
-        ),
-    ];
-  }
-}
