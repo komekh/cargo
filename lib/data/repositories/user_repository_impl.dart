@@ -2,10 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../core/core.dart';
 import '../../domain/domain.dart';
-import '../data_sources/data_sources.dart';
-import '../models/user/authentication_response_model.dart';
-
-typedef _DataSourceChooser = Future<AuthenticationResponseModel> Function();
+import '../data.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final UserRemoteDataSource remoteDataSource;
@@ -19,17 +16,18 @@ class UserRepositoryImpl implements UserRepository {
   });
 
   @override
-  Future<Either<Failure, User>> signIn(params) async {
-    return await _authenticate(() {
-      return remoteDataSource.signIn(params);
-    });
-  }
-
-  @override
-  Future<Either<Failure, User>> signUp(params) async {
-    return await _authenticate(() {
-      return remoteDataSource.signUp(params);
-    });
+  Future<Either<Failure, String>> signIn(params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final token = await remoteDataSource.signIn(params);
+        localDataSource.saveToken(token);
+        return Right(token);
+      } on Failure catch (failure) {
+        return Left(failure);
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
@@ -52,20 +50,23 @@ class UserRepositoryImpl implements UserRepository {
     }
   }
 
-  Future<Either<Failure, User>> _authenticate(
-    _DataSourceChooser getDataSource,
-  ) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final remoteResponse = await getDataSource();
-        localDataSource.saveToken(remoteResponse.token);
-        localDataSource.saveUser(remoteResponse.user);
-        return Right(remoteResponse.user);
-      } on Failure catch (failure) {
-        return Left(failure);
-      }
-    } else {
+  @override
+  Future<Either<Failure, User>> getRemoteUser() async {
+    if (!await networkInfo.isConnected) {
       return Left(NetworkFailure());
+    }
+
+    if (!await localDataSource.isTokenAvailable()) {
+      return Left(AuthenticationFailure());
+    }
+
+    try {
+      final String token = await localDataSource.getToken();
+      final user = await remoteDataSource.getUser(token);
+      await localDataSource.saveUser(UserModel.fromUser(user));
+      return Right(user);
+    } on Failure catch (failure) {
+      return Left(failure);
     }
   }
 }

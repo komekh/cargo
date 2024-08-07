@@ -66,9 +66,9 @@ class RootScreen extends StatelessWidget {
                 switch (activeTab) {
                   case NavigationTab.homeTab:
                     return const OrdersScreen();
-                  case NavigationTab.categoriesTab:
+                  case NavigationTab.history:
                     return const Text(' CategoriesScreen()');
-                  case NavigationTab.productsTap:
+                  case NavigationTab.profileTab:
                     return const ProfileScreen();
                   default:
                     return const OrdersScreen();

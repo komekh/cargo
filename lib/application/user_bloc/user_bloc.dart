@@ -12,18 +12,18 @@ part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final GetCachedUserUseCase _getCachedUserUseCase;
+  final GetRemoteUserUsecase _getRemoteUserUseCase;
   final SignInUseCase _signInUseCase;
-  final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
   UserBloc(
     this._signInUseCase,
     this._getCachedUserUseCase,
+    this._getRemoteUserUseCase,
     this._signOutUseCase,
-    this._signUpUseCase,
   ) : super(UserInitial()) {
     on<SignInUser>(_onSignIn);
-    on<SignUpUser>(_onSignUp);
     on<CheckUser>(_onCheckUser);
+    on<GetRemoteUser>(_onGetRemoteUser);
     on<SignOutUser>(_onSignOut);
   }
 
@@ -33,7 +33,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final result = await _signInUseCase(event.params);
       result.fold(
         (failure) => emit(UserLoggedFail(failure)),
-        (user) => emit(UserLogged(user)),
+        (token) => emit(UserLogged(token)),
       );
     } catch (e) {
       emit(UserLoggedFail(ExceptionFailure()));
@@ -46,20 +46,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final result = await _getCachedUserUseCase(NoParams());
       result.fold(
         (failure) => emit(UserLoggedFail(failure)),
-        (user) => emit(UserLogged(user)),
-      );
-    } catch (e) {
-      emit(UserLoggedFail(ExceptionFailure()));
-    }
-  }
-
-  FutureOr<void> _onSignUp(SignUpUser event, Emitter<UserState> emit) async {
-    try {
-      emit(UserLoading());
-      final result = await _signUpUseCase(event.params);
-      result.fold(
-        (failure) => emit(UserLoggedFail(failure)),
-        (user) => emit(UserLogged(user)),
+        (user) => emit(UserFetched(user)),
       );
     } catch (e) {
       emit(UserLoggedFail(ExceptionFailure()));
@@ -73,6 +60,38 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(UserLoggedOut());
     } catch (e) {
       emit(UserLoggedFail(ExceptionFailure()));
+    }
+  }
+
+  FutureOr<void> _onGetRemoteUser(
+    GetRemoteUser event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      emit(UserLoading());
+      final result = await _getRemoteUserUseCase(NoParams());
+      result.fold(
+        (failure) => emit(_mapFailureToState(failure)),
+        (user) => emit(UserFetched(user)),
+      );
+    } catch (e) {
+      emit(UserLoggedFail(ExceptionFailure()));
+    }
+  }
+
+  UserState _mapFailureToState(Failure failure) {
+    if (failure is ServerFailure) {
+      return UserLoggedFail(ServerFailure());
+    } else if (failure is CacheFailure) {
+      return UserLoggedFail(CacheFailure());
+    } else if (failure is NetworkFailure) {
+      return UserLoggedFail(NetworkFailure());
+    } else if (failure is CredentialFailure) {
+      return UserLoggedFail(CredentialFailure());
+    } else if (failure is AuthenticationFailure) {
+      return UserLoggedFail(AuthenticationFailure());
+    } else {
+      return UserLoggedFail(ExceptionFailure());
     }
   }
 }

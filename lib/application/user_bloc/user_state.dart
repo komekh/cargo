@@ -14,8 +14,15 @@ class UserLoading extends UserState {
 }
 
 class UserLogged extends UserState {
+  final String token;
+  UserLogged(this.token);
+  @override
+  List<Object> get props => [token];
+}
+
+class UserFetched extends UserState {
   final User user;
-  UserLogged(this.user);
+  UserFetched(this.user);
   @override
   List<Object> get props => [user];
 }

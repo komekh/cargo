@@ -10,8 +10,8 @@ void registerUserFeature() {
   sl.registerFactory(() => UserBloc(sl(), sl(), sl(), sl()));
   sl.registerLazySingleton(() => GetCachedUserUseCase(sl()));
   sl.registerLazySingleton(() => SignInUseCase(sl()));
-  sl.registerLazySingleton(() => SignUpUseCase(sl()));
   sl.registerLazySingleton(() => SignOutUseCase(sl()));
+  sl.registerLazySingleton(() => GetRemoteUserUsecase(sl()));
 
   // User Repository and Data Sources
   sl.registerLazySingleton<UserRepository>(

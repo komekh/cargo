@@ -8,11 +8,8 @@ class SignInUser extends UserEvent {
   SignInUser(this.params);
 }
 
-class SignUpUser extends UserEvent {
-  final SignUpParams params;
-  SignUpUser(this.params);
-}
-
 class SignOutUser extends UserEvent {}
 
 class CheckUser extends UserEvent {}
+
+class GetRemoteUser extends UserEvent {}
