@@ -13,8 +13,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  // await GetStorage.init();
-
   await di.init();
 
   Bloc.observer = MyBlocObserver();
@@ -53,10 +51,3 @@ Future<void> main() async {
 // 5 create data source
 // 6 add di register
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-  }
-}

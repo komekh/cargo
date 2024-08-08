@@ -18,8 +18,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
-    context.read<UserBloc>().add(GetUser());
     super.initState();
+    context.read<UserBloc>().add(GetUser());
   }
 
   @override
@@ -27,7 +27,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     App.init(context);
     return Scaffold(
       backgroundColor: AppColors.surface,
-      body: BlocBuilder<UserBloc, UserState>(
+      body: BlocConsumer<UserBloc, UserState>(
+        listener: (context, state) {
+          if (state is UserLoggedOut || state is UserLoggedFail) {
+            _navigateToLoginScreen(context);
+          }
+        },
         builder: (context, state) {
           if (state is UserLoading) {
             return const Center(child: CircularProgressIndicator());
@@ -80,7 +85,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       RowWidget(
                         text: user.fullName,
                         leadingIcon: Icons.person_2_outlined,
-                        // trailingIcon: Icons.mode_edit_outlined,
                       ),
 
                       /// gap
@@ -90,7 +94,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       RowWidget(
                         text: user.phone,
                         leadingIcon: Icons.phone_android_outlined,
-                        // trailingIcon: Icons.mode_edit_outlined,
                       ),
                     ],
                   ),
@@ -168,7 +171,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Align(
               alignment: Alignment.center,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<UserBloc>().add(SignOutUser());
+                },
                 child: Text(
                   'Şahsy otagdan çykmak',
                   style: AppText.b1!.copyWith(
@@ -184,6 +189,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  void _navigateToLoginScreen(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        AppRouter.login,
+        (route) => false,
+      );
+    });
   }
 }
 

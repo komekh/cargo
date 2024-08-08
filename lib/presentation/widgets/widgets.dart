@@ -1,7 +1,7 @@
 export 'auth_error_dialog.dart';
 export 'bottom_navbar.dart';
 export 'button.dart';
-export 'credential_failure_dialog.dart';
+export 'error_dialog.dart';
 export 'info_card.dart';
 export 'location_card.dart';
 export 'order_card.dart';

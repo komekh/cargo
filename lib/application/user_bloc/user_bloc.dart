@@ -31,6 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   void _onSignIn(SignInUser event, Emitter<UserState> emit) async {
     try {
       emit(UserLoading());
+      // await Future.delayed(const Duration(seconds: 3));
       final result = await _signInUseCase(event.params);
       result.fold(
         (failure) => emit(UserLoggedFail(failure)),
@@ -100,7 +101,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   FutureOr<void> _onGetUser(GetUser event, Emitter<UserState> emit) async {
     try {
       emit(UserLoading());
-
+      // await Future.delayed(const Duration(seconds: 3));
       final user = await _getUserFromCacheOrRemote();
       emit(UserFetched(user));
     } catch (failure) {

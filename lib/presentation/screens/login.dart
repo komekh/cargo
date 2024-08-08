@@ -170,13 +170,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                     _nextScreen();
                                   } else if (state is UserLoggedFail) {
                                     if (state.failure is CredentialFailure) {
-                                      showCredentialErrorDialog(context);
+                                      showErrorDialog(
+                                        context: context,
+                                        header: 'Invalid credentials',
+                                        body: 'Username or Password Wrong!',
+                                      );
                                     } else {
                                       showAuthErrorDialog(context);
                                     }
                                   }
                                 },
                                 builder: (context, state) {
+                                  if (state is UserLoading) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
                                   return SizedBox(
                                     width: double.infinity,
                                     child: AppButton(
@@ -184,6 +193,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       btnColor: AppColors.primary,
                                       onPressed: () {
                                         if (_formKey.currentState!.validate()) {
+                                          Keyboard.hide(context);
+
+                                          /// sign in
                                           context.read<UserBloc>().add(
                                                 SignInUser(
                                                   SignInParams(
@@ -198,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   );
                                 },
-                              )
+                              ),
                             ],
                           ),
                         ),

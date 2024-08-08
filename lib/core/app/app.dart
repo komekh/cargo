@@ -33,6 +33,11 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         initialRoute: AppRouter.splash,
+        theme: ThemeData(
+          primarySwatch: CustomColors.primarySwatch,
+          useMaterial3: false,
+          primaryColor: AppColors.primary,
+        ),
       ),
     );
   }
