@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
 import '../../di/di.dart' as di;
+import '../../domain/entities/order/filter_params_model.dart';
 import '../core.dart';
 
 class MyApp extends StatelessWidget {
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => di.sl<UserBloc>(), //..add(CheckUser()),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<OrderBloc>()..add(const GetOrders(FilterProductParams())),
         ),
       ],
       child: MaterialApp(

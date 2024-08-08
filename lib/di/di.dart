@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'common.dart';
 import 'cubits.dart';
 import 'language.dart';
+import 'order.dart';
 import 'splash.dart';
 import 'user.dart';
 
@@ -15,7 +16,7 @@ Future<void> init() async {
   registerUserFeature();
   registerLanguageFeature();
   registerSplashFeature();
-
+  registerOrderFeature();
   // registerCategoryFeature();
   // registerProductFeature();
   // registerDeliveryInfoFeature();

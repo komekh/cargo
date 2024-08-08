@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
 import '../../core/core.dart';
+import '../../domain/domain.dart';
 import 'vertical_line.dart';
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({super.key});
+  final OrderEntity order;
+
+  const OrderCard({required this.order, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '№ABC456789',
+                  '№${order.no}',
                   style: AppText.b1b,
                 ),
                 GestureDetector(
@@ -48,14 +51,14 @@ class OrderCard extends StatelessWidget {
                 const Icon(Icons.circle, color: AppColors.green, size: 12),
                 const SizedBox(width: 4),
                 Text(
-                  'Ýolda',
+                  order.state,
                   style: AppText.b2b!.copyWith(
                     color: AppColors.grey,
                   ),
                 ),
                 const Spacer(),
                 Text(
-                  'Ugradylan senesi: 16.07.2024',
+                  'Ugradylan senesi: ${order.departedAt}',
                   style: AppText.b2b!.copyWith(
                     color: AppColors.grey,
                   ),
@@ -72,7 +75,7 @@ class OrderCard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Row(
                     children: [
                       /// vertical status line
@@ -88,35 +91,41 @@ class OrderCard extends StatelessWidget {
                       ),
 
                       /// info
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Nireden:',
-                            style: AppText.b2b!.copyWith(
-                              color: AppColors.grey,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Nireden:',
+                              style: AppText.b2b!.copyWith(
+                                color: AppColors.grey,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Urumçy',
-                            style: AppText.b2b!.copyWith(
-                              color: const Color(0xFF57575C),
+                            Text(
+                              order.from,
+                              style: AppText.b2b!.copyWith(
+                                color: const Color(0xFF57575C),
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Nirede:',
-                            style: AppText.b2b!.copyWith(
-                              color: AppColors.grey,
+                            const SizedBox(height: 8),
+                            Text(
+                              'Nirede:',
+                              style: AppText.b2b!.copyWith(
+                                color: AppColors.grey,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Aşgabat',
-                            style: AppText.b2b!.copyWith(
-                              color: const Color(0xFF57575C),
+                            Text(
+                              order.to,
+                              style: AppText.b2b!.copyWith(
+                                color: const Color(0xFF57575C),
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -125,7 +134,7 @@ class OrderCard extends StatelessWidget {
                 ),
                 // const Spacer(flex: 1),
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -136,7 +145,7 @@ class OrderCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '10',
+                        order.placesCount.toString(),
                         style: AppText.b2b!.copyWith(
                           color: const Color(0xFF57575C),
                         ),
@@ -149,7 +158,7 @@ class OrderCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '1472,31',
+                        order.volume.toString(),
                         style: AppText.b2b!.copyWith(
                           color: const Color(0xFF57575C),
                         ),
@@ -169,7 +178,7 @@ class OrderCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'AA1234AA',
+                        order.carrier,
                         style: AppText.b2b!.copyWith(
                           color: const Color(0xFF57575C),
                         ),
@@ -182,7 +191,7 @@ class OrderCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'A1043',
+                        order.shopNo,
                         style: AppText.b2b!.copyWith(
                           color: const Color(0xFF57575C),
                         ),
