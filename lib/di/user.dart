@@ -23,7 +23,7 @@ void registerUserFeature() {
   );
 
   sl.registerLazySingleton<UserLocalDataSource>(
-    () => UserLocalDataSourceImpl(sharedPreferences: sl(), secureStorage: sl()),
+    () => UserLocalDataSourceImpl(sharedPreferences: sl()),
   );
 
   sl.registerLazySingleton<UserRemoteDataSource>(

@@ -20,7 +20,7 @@ class UserRepositoryImpl implements UserRepository {
     if (await networkInfo.isConnected) {
       try {
         final token = await remoteDataSource.signIn(params);
-        localDataSource.saveToken(token);
+        await localDataSource.saveToken(token);
         return Right(token);
       } on Failure catch (failure) {
         return Left(failure);

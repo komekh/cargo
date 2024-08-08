@@ -25,6 +25,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<CheckUser>(_onCheckUser);
     on<GetRemoteUser>(_onGetRemoteUser);
     on<SignOutUser>(_onSignOut);
+    on<GetUser>(_onGetUser);
   }
 
   void _onSignIn(SignInUser event, Emitter<UserState> emit) async {
@@ -93,5 +94,37 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     } else {
       return UserLoggedFail(ExceptionFailure());
     }
+  }
+
+  /// get the user
+  FutureOr<void> _onGetUser(GetUser event, Emitter<UserState> emit) async {
+    try {
+      emit(UserLoading());
+
+      final user = await _getUserFromCacheOrRemote();
+      emit(UserFetched(user));
+    } catch (failure) {
+      emit(_mapFailureToState(failure as Failure));
+    }
+  }
+
+  Future<User> _getUserFromCacheOrRemote() async {
+    try {
+      final cacheResult = await _getCachedUserUseCase(NoParams());
+      return cacheResult.fold(
+        (failure) => throw failure,
+        (user) => user,
+      );
+    } catch (_) {
+      return await _getUserFromRemote();
+    }
+  }
+
+  Future<User> _getUserFromRemote() async {
+    final remoteResult = await _getRemoteUserUseCase(NoParams());
+    return remoteResult.fold(
+      (failure) => throw failure,
+      (user) => user,
+    );
   }
 }

@@ -13,3 +13,5 @@ class SignOutUser extends UserEvent {}
 class CheckUser extends UserEvent {}
 
 class GetRemoteUser extends UserEvent {}
+
+class GetUser extends UserEvent {}
