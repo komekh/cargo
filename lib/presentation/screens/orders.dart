@@ -21,7 +21,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize the context (if needed)
     App.init(context);
 
     // Provide the OrderBloc

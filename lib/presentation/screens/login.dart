@@ -19,12 +19,19 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _obscureText = false;
 
   void _nextScreen() {
     Navigator.of(context).pushNamedAndRemoveUntil(
       AppRouter.root,
       (route) => false,
     );
+  }
+
+  void _onEyeTapped() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
   }
 
   @override
@@ -151,12 +158,19 @@ class _LoginScreenState extends State<LoginScreen> {
                               Space.y!,
                               TextFormField(
                                 controller: _passwordController,
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  hintText: 'Öz açar sözüňi ýazyň',
-                                  prefixIcon: Icon(Icons.lock_outline),
-                                  suffixIcon: Icon(Icons.visibility_off),
-                                  border: OutlineInputBorder(),
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
+                                  hintText: 'Öz açar sözüni ýazyň',
+                                  prefixIcon: const Icon(Icons.lock_outline),
+                                  suffixIcon: GestureDetector(
+                                    onTap: _onEyeTapped,
+                                    child: _obscureText
+                                        ? const Icon(Icons.visibility_off)
+                                        : const Icon(
+                                            Icons.visibility,
+                                          ),
+                                  ),
+                                  border: const OutlineInputBorder(),
                                 ),
                                 validator: (val) => FormValidator.validateField(val),
                               ),
