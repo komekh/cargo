@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../core/core.dart';
 import '../../domain/domain.dart';
 import '../data_sources/data_sources.dart';
+import '../models/order/order_response_model.dart';
 
 class OrderRepositoryImpl extends OrderRepository {
   final OrderRemoteDataSource remoteDataSource;
@@ -16,7 +17,7 @@ class OrderRepositoryImpl extends OrderRepository {
   });
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> getOrders(FilterProductParams params) async {
+  Future<Either<Failure, OrderResponseModel>> getOrders(FilterProductParams params) async {
     if (!await networkInfo.isConnected) {
       return Left(NetworkFailure());
     }
@@ -27,8 +28,8 @@ class OrderRepositoryImpl extends OrderRepository {
 
     try {
       final String token = await localDataSource.getToken();
-      final orders = await remoteDataSource.getOrders(params, token);
-      return Right(orders);
+      final response = await remoteDataSource.getOrders(params, token);
+      return Right(response);
     } on Failure catch (failure) {
       return Left(failure);
     }

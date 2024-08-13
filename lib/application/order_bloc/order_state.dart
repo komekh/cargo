@@ -2,13 +2,19 @@ part of 'order_bloc.dart';
 
 abstract class OrderState extends Equatable {
   final List<OrderEntity> orders;
+  final PaginationMetaData metaData;
   final FilterProductParams params;
-  const OrderState({required this.orders, required this.params});
+  const OrderState({
+    required this.orders,
+    required this.metaData,
+    required this.params,
+  });
 }
 
 class OrderInitial extends OrderState {
   const OrderInitial({
     required super.orders,
+    required super.metaData,
     required super.params,
   });
   @override
@@ -18,6 +24,7 @@ class OrderInitial extends OrderState {
 class OrderEmpty extends OrderState {
   const OrderEmpty({
     required super.orders,
+    required super.metaData,
     required super.params,
   });
   @override
@@ -27,6 +34,7 @@ class OrderEmpty extends OrderState {
 class OrderLoading extends OrderState {
   const OrderLoading({
     required super.orders,
+    required super.metaData,
     required super.params,
   });
   @override
@@ -36,6 +44,7 @@ class OrderLoading extends OrderState {
 class OrderLoaded extends OrderState {
   const OrderLoaded({
     required super.orders,
+    required super.metaData,
     required super.params,
   });
   @override
@@ -46,6 +55,7 @@ class OrderError extends OrderState {
   final Failure failure;
   const OrderError({
     required super.orders,
+    required super.metaData,
     required super.params,
     required this.failure,
   });

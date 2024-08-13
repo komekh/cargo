@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 import '../../../core/core.dart';
@@ -7,7 +5,7 @@ import '../../../domain/domain.dart';
 import '../../data.dart';
 
 abstract class OrderRemoteDataSource {
-  Future<List<OrderModel>> getOrders(FilterProductParams params, String token);
+  Future<OrderResponseModel> getOrders(FilterProductParams params, String token);
 }
 
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
@@ -15,9 +13,9 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   OrderRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<OrderModel>> getOrders(FilterProductParams params, String token) async {
+  Future<OrderResponseModel> getOrders(FilterProductParams params, String token) async {
     final response = await client.get(
-      Uri.parse('$baseUrl/Goods'),
+      Uri.parse('$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}'),
       headers: {
         'Content-Type': 'application/json',
         'accept': '*/*',
@@ -26,9 +24,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
-      List<dynamic> jsonData = json.decode(response.body);
-      final list = jsonData.map((item) => OrderModel.fromJson(item)).toList();
-      return list;
+      return orderResponseModelFromJson(response.body);
     } else {
       throw ServerException();
     }

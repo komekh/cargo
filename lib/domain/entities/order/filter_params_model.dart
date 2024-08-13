@@ -1,19 +1,19 @@
 class FilterProductParams {
-  final int? limit;
-  final int? pageSize;
+  final int offset;
+  final int limit;
 
   const FilterProductParams({
-    this.limit = 0,
-    this.pageSize = 10,
+    this.offset = 1,
+    this.limit = 10,
   });
 
   FilterProductParams copyWith({
-    int? skip,
+    int? offset,
     int? limit,
-    int? pageSize,
-  }) =>
-      FilterProductParams(
-        limit: skip ?? this.limit,
-        pageSize: pageSize ?? this.pageSize,
-      );
+  }) {
+    return FilterProductParams(
+      offset: offset ?? this.offset,
+      limit: limit ?? this.limit,
+    );
+  }
 }
