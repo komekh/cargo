@@ -27,10 +27,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     on<GetMoreOrders>(_onLoadMoreOrders);
   }
 
-  FutureOr<void> _onGetOrders(
-    GetOrders event,
-    Emitter<OrderState> emit,
-  ) async {
+  FutureOr<void> _onGetOrders(GetOrders event, Emitter<OrderState> emit) async {
     try {
       emit(OrderLoading(
         orders: const [],
@@ -61,7 +58,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     }
   }
 
-  void _onLoadMoreOrders(GetMoreOrders event, Emitter<OrderState> emit) async {
+  Future<void> _onLoadMoreOrders(GetMoreOrders event, Emitter<OrderState> emit) async {
     var state = this.state;
     var limit = state.metaData.limit;
     var total = state.metaData.total;

@@ -13,14 +13,10 @@ class OrdersScreen extends StatefulWidget {
   State<OrdersScreen> createState() => _OrdersScreenState();
 }
 
-class _OrdersScreenState extends State<OrdersScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClientMixin<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     App.init(context);
 
     return Scaffold(
@@ -106,4 +102,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

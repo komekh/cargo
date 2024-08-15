@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _obscureText = false;
+  bool _obscureText = true;
 
   void _nextScreen() {
     Navigator.of(context).pushNamedAndRemoveUntil(

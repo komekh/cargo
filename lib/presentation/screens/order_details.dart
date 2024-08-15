@@ -1,12 +1,27 @@
+import 'package:cargo/application/application.dart';
 import 'package:cargo/configs/configs.dart';
+import 'package:cargo/domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/core.dart';
 import '../widgets/map/clustering.dart';
 import '../widgets/widgets.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
-  const OrderDetailsScreen({super.key});
+class OrderDetailsScreen extends StatefulWidget {
+  final OrderEntity order;
+  const OrderDetailsScreen({super.key, required this.order});
+
+  @override
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+  @override
+  void initState() {
+    context.read<OrderDetailBloc>().add(GetRoutes(widget.order.cargoId));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +86,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   Space.y!,
 
                   /// location card
-                  const LocationCard()
+                  LocationCard(cargoId: widget.order.cargoId)
                 ],
               ),
             ),

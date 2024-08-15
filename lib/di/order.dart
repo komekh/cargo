@@ -9,6 +9,10 @@ void registerOrderFeature() {
   sl.registerFactory(() => OrderBloc(sl()));
   sl.registerLazySingleton(() => GetOrderUseCase(sl()));
 
+  // OrderDetails
+  sl.registerFactory(() => OrderDetailBloc(sl()));
+  sl.registerLazySingleton(() => GetRoutesUseCase(sl()));
+
   // Order Repository and Data Sources
   sl.registerLazySingleton<OrderRepository>(
     () => OrderRepositoryImpl(

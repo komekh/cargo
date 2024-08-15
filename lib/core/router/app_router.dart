@@ -1,3 +1,4 @@
+import 'package:cargo/domain/domain.dart';
 import 'package:flutter/material.dart';
 
 import '../../presentation/presentation.dart';
@@ -22,7 +23,8 @@ sealed class AppRouter {
       case root:
         return MaterialPageRoute(builder: (_) => const RootScreen());
       case orderDetails:
-        return MaterialPageRoute(builder: (_) => const OrderDetailsScreen());
+        OrderEntity order = routeSettings.arguments as OrderEntity;
+        return MaterialPageRoute(builder: (_) => OrderDetailsScreen(order: order));
 
       default:
         throw const RouteException('Route not found!');

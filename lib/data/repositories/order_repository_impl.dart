@@ -1,3 +1,4 @@
+import 'package:cargo/data/models/route/route_response_model.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/core.dart';
@@ -29,6 +30,20 @@ class OrderRepositoryImpl extends OrderRepository {
     try {
       final String token = await localDataSource.getToken();
       final response = await remoteDataSource.getOrders(params, token);
+      return Right(response);
+    } on Failure catch (failure) {
+      return Left(failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, RouteResponseModel>> getRoutes(String cargoId) async {
+    if (!await networkInfo.isConnected) {
+      return Left(NetworkFailure());
+    }
+
+    try {
+      final response = await remoteDataSource.getRoutes(cargoId);
       return Right(response);
     } on Failure catch (failure) {
       return Left(failure);

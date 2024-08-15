@@ -27,6 +27,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => di.sl<OrderBloc>()..add(const GetOrders(FilterProductParams())),
         ),
+        BlocProvider(
+          create: (context) => di.sl<OrderDetailBloc>(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

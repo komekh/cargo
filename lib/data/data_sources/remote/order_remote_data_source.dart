@@ -3,9 +3,11 @@ import 'package:http/http.dart' as http;
 import '../../../core/core.dart';
 import '../../../domain/domain.dart';
 import '../../data.dart';
+import '../../models/route/route_response_model.dart';
 
 abstract class OrderRemoteDataSource {
   Future<OrderResponseModel> getOrders(FilterProductParams params, String token);
+  Future<RouteResponseModel> getRoutes(String orderId);
 }
 
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
@@ -25,6 +27,23 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
     if (response.statusCode == 200) {
       return orderResponseModelFromJson(response.body);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<RouteResponseModel> getRoutes(String orderId) async {
+    final response = await client.get(
+      Uri.parse('$baseUrl/Cargo/Route/$orderId'),
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': '*/*',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return routeResponseModelFromJson(response.body);
     } else {
       throw ServerException();
     }

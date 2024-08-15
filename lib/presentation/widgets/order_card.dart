@@ -30,7 +30,10 @@ class OrderCard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed(AppRouter.orderDetails);
+                    Navigator.of(context).pushNamed(
+                      AppRouter.orderDetails,
+                      arguments: order,
+                    );
                   },
                   child: Text(
                     'Ginişleýin >',
