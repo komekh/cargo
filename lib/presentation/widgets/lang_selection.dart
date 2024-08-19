@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
+import '../../core/constants/colors.dart';
 import '../../data/data_sources/local/languages_data_source.dart';
 
 class BottomSheetContent extends StatelessWidget {
@@ -29,20 +30,10 @@ class BottomSheetContent extends StatelessWidget {
                     lang.language,
                     style: AppText.b1,
                   ),
-                  trailing: state.locale.languageCode == lang.code
-                      ? Icon(
-                          Icons.check,
-                          color: Colors.green,
-                          size: 26.0,
-                          shadows: [
-                            Shadow(
-                              offset: const Offset(0, 2),
-                              blurRadius: 3.0,
-                              color: Colors.black.withOpacity(0.3),
-                            ),
-                          ],
-                        )
-                      : null,
+                  trailing: Icon(
+                    state.locale.languageCode == lang.code ? Icons.radio_button_checked : Icons.radio_button_off,
+                    color: AppColors.primary,
+                  ),
                   onTap: () {
                     debugPrint('lang_selection');
                     context.read<LanguageBloc>().add(

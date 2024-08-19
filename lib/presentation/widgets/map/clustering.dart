@@ -7,9 +7,14 @@ import 'package:latlong2/latlong.dart';
 import '../../../application/order_detail_bloc/order_detail_bloc.dart';
 
 class ClusteringPage extends StatefulWidget {
-  static const String route = 'clusteringPage';
+  final VoidCallback onFullScreenToggle;
+  final bool isFullScreen;
 
-  const ClusteringPage({super.key});
+  const ClusteringPage({
+    super.key,
+    required this.onFullScreenToggle,
+    required this.isFullScreen,
+  });
 
   @override
   State<ClusteringPage> createState() => _ClusteringPageState();
@@ -31,6 +36,10 @@ class _ClusteringPageState extends State<ClusteringPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: widget.onFullScreenToggle, // Use the passed callback
+        child: Icon(widget.isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen),
+      ),
       body: BlocBuilder<OrderDetailBloc, OrderDetailState>(
         builder: (context, state) {
           if (state is RoutesLoading) {

@@ -8,8 +8,11 @@ import '../../domain/entities/order/order.dart';
 import '../widgets/map/clustering.dart';
 import '../widgets/widgets.dart';
 
+import 'package:flutter/services.dart';
+
 class OrderDetailsScreen extends StatefulWidget {
   final OrderEntity order;
+
   const OrderDetailsScreen({super.key, required this.order});
 
   @override
@@ -17,10 +20,26 @@ class OrderDetailsScreen extends StatefulWidget {
 }
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
+  bool _isFullScreen = false; // Track fullscreen mode
+
   @override
   void initState() {
     context.read<OrderDetailBloc>().add(GetRoutes(widget.order.cargoId));
     super.initState();
+  }
+
+  void _toggleFullScreen() {
+    setState(() {
+      _isFullScreen = !_isFullScreen;
+
+      if (_isFullScreen) {
+        // Enter fullscreen mode
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      } else {
+        // Exit fullscreen mode
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+      }
+    });
   }
 
   @override
@@ -28,69 +47,78 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     App.init(context);
     return Scaffold(
       backgroundColor: AppColors.surface,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        backgroundColor: AppColors.primary,
-        title: Text(
-          'Sargyt ${widget.order.name}',
-          style: AppText.h2!.copyWith(color: Colors.white),
-        ),
-      ),
+      appBar: _isFullScreen
+          ? null // Hide the app bar in fullscreen mode
+          : AppBar(
+              iconTheme: const IconThemeData(
+                color: Colors.white,
+              ),
+              backgroundColor: AppColors.primary,
+              title: Text(
+                'Sargyt: ${widget.order.name}',
+                style: AppText.h2!.copyWith(color: Colors.white),
+              ),
+            ),
       body: CustomScrollView(
         slivers: [
           /// map
           SliverToBoxAdapter(
             child: SizedBox(
-              height: AppDimensions.normalize(130),
-              child: const ClusteringPage(),
-            ),
-          ),
-
-          /// info text
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: Space.all(1, 1),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Sargyt barada maglumat №${widget.order.no}',
-                    style: AppText.b1b,
-                  ),
-
-                  /// gap
-                  Space.y!,
-
-                  /// info card
-                  InfoCard(order: widget.order),
-                ],
+              height: _isFullScreen
+                  ? MediaQuery.of(context).size.height // Full screen height
+                  : AppDimensions.normalize(130),
+              child: ClusteringPage(
+                onFullScreenToggle: _toggleFullScreen,
+                isFullScreen: _isFullScreen,
               ),
             ),
           ),
 
-          /// current location info
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: Space.all(1, 1),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Gatnaw yoly',
-                    style: AppText.b1b,
-                  ),
+          if (!_isFullScreen) ...[
+            /// info text
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: Space.all(1, 1),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Sargyt barada maglumat №${widget.order.no}',
+                      style: AppText.b1b,
+                    ),
 
-                  /// gap
-                  Space.y!,
+                    /// gap
+                    Space.y!,
 
-                  /// location card
-                  LocationCard(cargoId: widget.order.cargoId)
-                ],
+                    /// info card
+                    InfoCard(order: widget.order),
+                  ],
+                ),
               ),
             ),
-          ),
+
+            /// current location info
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: Space.all(1, 1),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Gatnaw yoly',
+                      style: AppText.b1b,
+                    ),
+
+                    /// gap
+                    Space.y!,
+
+                    /// location card
+                    LocationCard(cargoId: widget.order.cargoId),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
