@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -35,7 +36,7 @@ class Splash2Screen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Cargo goşundy',
+                  'cargo_app'.tr(),
                   style: AppText.h1b?.copyWith(
                     color: Colors.white,
                     fontSize: 40,
@@ -47,7 +48,7 @@ class Splash2Screen extends StatelessWidget {
 
                 /// text
                 Text(
-                  'Öz sargydyňyzy yzarlaň',
+                  'track_cargo'.tr(),
                   style: AppText.b1?.copyWith(
                     color: AppColors.yellow,
                     fontSize: 22,
@@ -71,7 +72,7 @@ class Splash2Screen extends StatelessWidget {
                       textColor: AppColors.primary,
                       btnColor: AppColors.yellow,
                       onPressed: () => _onFollowTapped(context),
-                      text: 'Yzarlap başlaň',
+                      text: 'start_tracking'.tr(),
                     ),
                   ),
                 )

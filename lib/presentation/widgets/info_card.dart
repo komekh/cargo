@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -18,26 +19,27 @@ class InfoCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RowTextWidget(title: 'Ýagdaýy:', info: order.state),
+              RowTextWidget(title: '${'order_status'.tr()}:', info: order.state),
               Space.y!,
-              RowTextWidget(title: 'Awtoulag №:', info: order.carrier),
+              RowTextWidget(title: '${'order_carrier'.tr()}:', info: order.carrier),
               Space.y!,
-              RowTextWidget(title: 'Dukan №:', info: order.shopNo),
+              RowTextWidget(title: '${'order_shop'.tr()}:', info: order.shopNo),
               Space.y!,
-              RowTextWidget(title: 'Nireden ugradyldy:', info: order.from),
+              RowTextWidget(title: '${'order_from'.tr()}:', info: order.from),
               Space.y!,
-              RowTextWidget(title: 'Nirä barmaly:', info: order.to),
+              RowTextWidget(title: '${'order_to'.tr()}:', info: order.to),
               Space.y!,
-              RowTextWidget(title: 'Ýer sany:', info: order.placesCount.toString()),
+              RowTextWidget(title: '${'order_placement_count'.tr()}:', info: order.placesCount.toString()),
               Space.y!,
-              RowTextWidget(title: 'Kub:', info: order.volume.toString()),
+              RowTextWidget(title: '${'order_volume'.tr()}:', info: order.volume.toString()),
               Space.y!,
               RowTextWidget(
-                  title: 'Göwrumi:', info: '${order.width}x${order.depth}x${order.height} (ini, uzynlygy, beýikligi)'),
+                  title: '${'order_dimensions'.tr()}:',
+                  info: '${order.width}x${order.depth}x${order.height} ${'order_dimensions_desc'.tr()}'),
               Space.y!,
-              RowTextWidget(title: 'Harydyň ady:', info: order.name),
+              RowTextWidget(title: '${'order_product_name'.tr()}:', info: order.name),
               // Space.y!,
-              // const RowTextWidget(title: 'Sargydyň bahasy:', info: '300'),
+              //  RowTextWidget(title: 'Sargydyň bahasy:', info: order.price),
             ],
           ),
         ),

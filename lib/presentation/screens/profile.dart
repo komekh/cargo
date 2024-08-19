@@ -66,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             /// header
             Text(
-              'Şahsy otagym',
+              'personal_cabinet'.tr(),
               style: AppText.h1b,
             ),
 
@@ -105,14 +105,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Space.yf(2),
 
             /// card
-            const SizedBox(
+            SizedBox(
               width: double.infinity,
               child: Card(
                 color: Colors.white,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: RowWidget(
-                    text: 'Tehniki goldaw bilen habarlaşmak',
+                    text: 'contact_support'.tr(),
                     leadingIcon: Icons.contact_support_outlined,
                     trailingIcon: Icons.arrow_forward_ios,
                   ),
@@ -146,15 +146,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
 
                       /// name surname
-                      const RowWidget(
-                        text: 'Gizlinlik syýasaty',
+                      RowWidget(
+                        text: 'privacy_policy'.tr(),
                         leadingIcon: Icons.gpp_maybe_outlined,
                         trailingIcon: Icons.arrow_forward_ios,
                       ),
 
                       /// phone
-                      const RowWidget(
-                        text: 'Ulanyş şertleri',
+                      RowWidget(
+                        text: 'use_terms'.tr(),
                         leadingIcon: Icons.file_copy_outlined,
                         trailingIcon: Icons.arrow_forward_ios,
                       ),
@@ -175,7 +175,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   context.read<UserBloc>().add(SignOutUser());
                 },
                 child: Text(
-                  'Şahsy otagdan çykmak',
+                  'logout'.tr(),
                   style: AppText.b1!.copyWith(
                     color: Colors.red,
                   ),

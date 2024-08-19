@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,19 +37,19 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
             SliverToBoxAdapter(
               child: Padding(
                 padding: Space.all(1, 1),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Sargytlarym',
-                      style: TextStyle(
+                      'my_orders'.tr(),
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'öz ýüküňizi yzarlaň',
-                      style: TextStyle(
+                      'follow_orders'.tr(),
+                      style: const TextStyle(
                         color: Colors.grey,
                       ),
                     ),

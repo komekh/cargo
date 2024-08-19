@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,12 +47,12 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
 
                     /// header text
                     Text(
-                      'Sargytlaryn taryhy',
+                      'order_history'.tr(),
                       style: AppText.h1b,
                     ),
-                    const Text(
-                      'şu ýerde siziň sargytlaryňyz wagt tertipi boyunça görkezilen',
-                      style: TextStyle(
+                    Text(
+                      'order_history_desc'.tr(),
+                      style: const TextStyle(
                         color: AppColors.darkGrey,
                       ),
                     ),
@@ -92,9 +93,9 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
                     ),
                   );
                 } else {
-                  return const SliverToBoxAdapter(
+                  return SliverToBoxAdapter(
                     child: Center(
-                      child: Text('No orders available'),
+                      child: Text('order_not_available'.tr()),
                     ),
                   );
                 }

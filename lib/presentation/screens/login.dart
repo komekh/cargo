@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -119,17 +120,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                'Şahsy otaga giriş',
-                                style: TextStyle(
+                              Text(
+                                'login_header'.tr(),
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
 
-                              const Text(
-                                'özüňize berlen logini we açar sözi giriziň',
-                                style: TextStyle(
+                              Text(
+                                'login_desc'.tr(),
+                                style: const TextStyle(
                                   color: Colors.grey,
                                 ),
                               ),
@@ -138,14 +139,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               Space.yf(),
 
                               /// username field
-                              const Text('Login'),
+                              Text('login'.tr()),
                               Space.y!,
                               TextFormField(
                                 controller: _userNameController,
-                                decoration: const InputDecoration(
-                                  hintText: 'Öz loginiňizi ýazyň',
-                                  prefixIcon: Icon(Icons.person_outline),
-                                  border: OutlineInputBorder(),
+                                decoration: InputDecoration(
+                                  hintText: 'login_hint'.tr(),
+                                  prefixIcon: const Icon(Icons.person_outline),
+                                  border: const OutlineInputBorder(),
                                 ),
                                 validator: (val) => FormValidator.validateField(val),
                               ),
@@ -154,13 +155,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               Space.yf(),
 
                               /// password field
-                              const Text('Açar sözi'),
+                              Text('password'.tr()),
                               Space.y!,
                               TextFormField(
                                 controller: _passwordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
-                                  hintText: 'Öz açar sözüni ýazyň',
+                                  hintText: 'password_hint'.tr(),
                                   prefixIcon: const Icon(Icons.lock_outline),
                                   suffixIcon: GestureDetector(
                                     onTap: _onEyeTapped,
@@ -186,8 +187,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     if (state.failure is CredentialFailure) {
                                       showErrorDialog(
                                         context: context,
-                                        header: 'Invalid credentials',
-                                        body: 'Username or Password Wrong!',
+                                        header: 'credentials_validation_header'.tr(),
+                                        body: 'credentials_validation_body'.tr(),
                                       );
                                     } else {
                                       showAuthErrorDialog(context);
@@ -220,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               );
                                         }
                                       },
-                                      text: 'Yzarlap başlaň',
+                                      text: 'start_tracking'.tr(),
                                     ),
                                   );
                                 },

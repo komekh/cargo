@@ -1,14 +1,14 @@
-import 'package:cargo/configs/configs.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/order_detail_bloc/order_detail_bloc.dart';
+import '../../configs/configs.dart';
 import '../../core/core.dart';
 import '../../domain/entities/order/order.dart';
 import '../widgets/map/clustering.dart';
 import '../widgets/widgets.dart';
-
-import 'package:flutter/services.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final OrderEntity order;
@@ -55,7 +55,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               ),
               backgroundColor: AppColors.primary,
               title: Text(
-                'Sargyt: ${widget.order.name}',
+                '${'order'.tr()} №${widget.order.no}',
                 style: AppText.h2!.copyWith(color: Colors.white),
               ),
             ),
@@ -83,7 +83,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Sargyt barada maglumat №${widget.order.no}',
+                      '${'order_info'.tr()} №${widget.order.no}',
                       style: AppText.b1b,
                     ),
 
@@ -105,7 +105,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Gatnaw yoly',
+                      'route'.tr(),
                       style: AppText.b1b,
                     ),
 

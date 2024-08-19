@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -36,7 +37,7 @@ class OrderCard extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    'Ginişleýin >',
+                    '${'order_details'.tr()} >',
                     style: AppText.b1b?.copyWith(
                       color: AppColors.primary,
                     ),
@@ -61,7 +62,7 @@ class OrderCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  'Ugradylan senesi: ${order.departedAt}',
+                  '${'order_sent'.tr()}: ${order.departedAt}',
                   style: AppText.b2b!.copyWith(
                     color: AppColors.grey,
                   ),
@@ -78,7 +79,7 @@ class OrderCard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: Row(
                     children: [
                       /// vertical status line
@@ -99,7 +100,7 @@ class OrderCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Nireden:',
+                              '${'order_from_card'.tr()}:',
                               style: AppText.b2b!.copyWith(
                                 color: AppColors.grey,
                               ),
@@ -114,7 +115,7 @@ class OrderCard extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Nirede:',
+                              '${'order_to_card'.tr()}:',
                               style: AppText.b2b!.copyWith(
                                 color: AppColors.grey,
                               ),
@@ -142,7 +143,7 @@ class OrderCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Ýer sany:',
+                        '${'order_placement_count'.tr()}:',
                         style: AppText.b2b!.copyWith(
                           color: AppColors.grey,
                         ),
@@ -155,7 +156,7 @@ class OrderCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Göwrümi:',
+                        '${'order_dimensions'.tr()}:',
                         style: AppText.b2b!.copyWith(
                           color: AppColors.grey,
                         ),
@@ -175,7 +176,7 @@ class OrderCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Maşyn №:',
+                        '${'order_carrier'.tr()}:',
                         style: AppText.b2b!.copyWith(
                           color: AppColors.grey,
                         ),
@@ -188,7 +189,7 @@ class OrderCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Dukan №:',
+                        '${'order_shop'.tr()}:',
                         style: AppText.b2b!.copyWith(
                           color: AppColors.grey,
                         ),

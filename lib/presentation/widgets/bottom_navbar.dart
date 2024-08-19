@@ -1,11 +1,12 @@
 // bottom_navigation.dart
 
-import 'package:cargo/core/core.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
 import '../../configs/configs.dart';
+import '../../core/core.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({super.key});
@@ -23,18 +24,18 @@ class BottomNavigation extends StatelessWidget {
               final newTab = NavigationTab.values[index];
               context.read<NavigationCubit>().updateTab(newTab);
             },
-            items: const <BottomNavigationBarItem>[
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.list_alt_outlined),
-                label: 'Sargytlarym',
+                icon: const Icon(Icons.list_alt_outlined),
+                label: 'my_orders'.tr(context: context),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.history_rounded),
-                label: 'Sargytlaryň taryhy',
+                icon: const Icon(Icons.history_rounded),
+                label: 'order_history'.tr(context: context),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline_rounded),
-                label: 'Şahsy otagym',
+                icon: const Icon(Icons.person_outline_rounded),
+                label: 'personal_cabinet'.tr(context: context),
               ),
             ],
             selectedItemColor: AppColors.primary,

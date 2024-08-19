@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,18 +16,18 @@ class RootScreen extends StatelessWidget {
     return (await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text(
-              'Exit Application',
-              style: TextStyle(color: AppColors.primary),
+            title: Text(
+              'exit_app'.tr(),
+              style: const TextStyle(color: AppColors.primary),
             ),
-            content: const Text(
-              'Are You Sure?',
+            content: Text(
+              'are_you_sure'.tr(),
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text(
-                  'Yes',
-                  style: TextStyle(
+                child: Text(
+                  'yes'.tr(),
+                  style: const TextStyle(
                     color: Colors.red,
                   ),
                 ),
@@ -35,9 +36,9 @@ class RootScreen extends StatelessWidget {
                 },
               ),
               TextButton(
-                child: const Text(
-                  'No',
-                  style: TextStyle(color: AppColors.primary),
+                child: Text(
+                  'no'.tr(),
+                  style: const TextStyle(color: AppColors.primary),
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
