@@ -25,7 +25,10 @@ class MyApp extends StatelessWidget {
           create: (context) => di.sl<UserBloc>(), //..add(CheckUser()),
         ),
         BlocProvider(
-          create: (context) => di.sl<OrderBloc>()..add(const GetOrders(FilterProductParams())),
+          create: (context) => di.sl<OrderBloc>()
+            ..add(const GetOrders(
+              FilterProductParams(state: GoodsState.Received),
+            )),
         ),
         BlocProvider(
           create: (context) => di.sl<OrderDetailBloc>(),

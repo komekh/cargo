@@ -1,10 +1,10 @@
-import 'package:cargo/application/application.dart';
 import 'package:cargo/configs/configs.dart';
-import 'package:cargo/domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/order_detail_bloc/order_detail_bloc.dart';
 import '../../core/core.dart';
+import '../../domain/entities/order/order.dart';
 import '../widgets/map/clustering.dart';
 import '../widgets/widgets.dart';
 
@@ -34,7 +34,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         ),
         backgroundColor: AppColors.primary,
         title: Text(
-          'Sargyt №ABC456789',
+          'Sargyt ${widget.order.name}',
           style: AppText.h2!.copyWith(color: Colors.white),
         ),
       ),
@@ -43,7 +43,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           /// map
           SliverToBoxAdapter(
             child: SizedBox(
-              height: AppDimensions.normalize(120),
+              height: AppDimensions.normalize(130),
               child: const ClusteringPage(),
             ),
           ),

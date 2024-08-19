@@ -4,10 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/order_bloc/order_bloc.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
+import '../../domain/entities/order/filter_params_model.dart';
 import '../widgets/widgets.dart';
 
-class HistoriesScreen extends StatelessWidget {
+class HistoriesScreen extends StatefulWidget {
   const HistoriesScreen({super.key});
+
+  @override
+  State<HistoriesScreen> createState() => _HistoriesScreenState();
+}
+
+class _HistoriesScreenState extends State<HistoriesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<OrderBloc>().add(const GetOrders(FilterProductParams()));
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -16,8 +16,12 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
   @override
   Future<OrderResponseModel> getOrders(FilterProductParams params, String token) async {
+    Uri uri = Uri.parse(
+      '$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}${params.state != null ? '&state=${params.state!.name}' : ''}',
+    );
+
     final response = await client.get(
-      Uri.parse('$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}'),
+      uri,
       headers: {
         'Content-Type': 'application/json',
         'accept': '*/*',
