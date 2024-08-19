@@ -38,7 +38,7 @@ class LocationCard extends StatelessWidget {
                         route.isCurrent
                             ? const Icon(
                                 Icons.radio_button_checked,
-                                color: AppColors.grey,
+                                color: AppColors.primary,
                               )
                             : Container(
                                 margin: Space.hf(0.35),

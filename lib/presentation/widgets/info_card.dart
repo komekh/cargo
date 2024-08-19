@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
+import '../../domain/entities/order/order.dart';
 
 class InfoCard extends StatelessWidget {
-  const InfoCard({super.key});
+  final OrderEntity order;
+  const InfoCard({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +18,26 @@ class InfoCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const RowTextWidget(title: 'Ýagdaýy:', info: 'Ýolda'),
+              RowTextWidget(title: 'Ýagdaýy:', info: order.state),
               Space.y!,
-              const RowTextWidget(title: 'Awtoulag №:', info: 'ABC456789'),
+              RowTextWidget(title: 'Awtoulag №:', info: order.carrier),
               Space.y!,
-              const RowTextWidget(title: 'Dukan №:', info: 'ABC456789'),
+              RowTextWidget(title: 'Dukan №:', info: order.shopNo),
               Space.y!,
-              const RowTextWidget(title: 'Nireden ugradyldy:', info: 'Urumçy'),
+              RowTextWidget(title: 'Nireden ugradyldy:', info: order.from),
               Space.y!,
-              const RowTextWidget(title: 'Nirä barmaly:', info: 'Aşgabat'),
+              RowTextWidget(title: 'Nirä barmaly:', info: order.to),
               Space.y!,
-              const RowTextWidget(title: 'Ýer sany:', info: '36'),
+              RowTextWidget(title: 'Ýer sany:', info: order.placesCount.toString()),
               Space.y!,
-              const RowTextWidget(title: 'Kub:', info: '12 m3'),
+              RowTextWidget(title: 'Kub:', info: order.volume.toString()),
               Space.y!,
-              const RowTextWidget(title: 'Göwrumi:', info: '60x57x38 (ini, uzynlygy, beýikligi)'),
+              RowTextWidget(
+                  title: 'Göwrumi:', info: '${order.width}x${order.depth}x${order.height} (ini, uzynlygy, beýikligi)'),
               Space.y!,
-              const RowTextWidget(title: 'Harydyň ady:', info: 'Köwüş'),
-              Space.y!,
-              const RowTextWidget(title: 'Sargydyň bahasy:', info: '300'),
+              RowTextWidget(title: 'Harydyň ady:', info: order.name),
+              // Space.y!,
+              // const RowTextWidget(title: 'Sargydyň bahasy:', info: '300'),
             ],
           ),
         ),
@@ -61,13 +64,17 @@ class RowTextWidget extends StatelessWidget {
           style: AppText.b1!.copyWith(
             color: const Color(0xFF57575C),
           ),
+          maxLines: 2,
         ),
         Space.x!,
-        Text(
-          info,
-          style: AppText.b1!.copyWith(
-            color: const Color(0xFF0C0C0D),
-            fontWeight: FontWeight.w500,
+        Expanded(
+          child: Text(
+            info,
+            style: AppText.b1!.copyWith(
+              color: const Color(0xFF0C0C0D),
+              fontWeight: FontWeight.w500,
+            ),
+            maxLines: 2,
           ),
         ),
       ],

@@ -62,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// gap
-            Space.yf(1),
+            Space.yf(1.3),
 
             /// header
             Text(

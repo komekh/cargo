@@ -64,11 +64,11 @@ class RootScreen extends StatelessWidget {
             child: BlocBuilder<NavigationCubit, NavigationTab>(
               builder: (context, activeTab) {
                 switch (activeTab) {
-                  case NavigationTab.homeTab:
+                  case NavigationTab.home:
                     return const OrdersScreen();
-                  case NavigationTab.history:
-                    return const Text(' CategoriesScreen()');
-                  case NavigationTab.profileTab:
+                  case NavigationTab.histories:
+                    return const HistoriesScreen();
+                  case NavigationTab.profile:
                     return const ProfileScreen();
                   default:
                     return const OrdersScreen();

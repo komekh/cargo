@@ -1,1 +1,1 @@
-enum NavigationTab { homeTab, history, profileTab }
+enum NavigationTab { home, histories, profile }

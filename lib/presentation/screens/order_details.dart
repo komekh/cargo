@@ -56,7 +56,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Sargyt barada maglumat №ABC456789',
+                    'Sargyt barada maglumat №${widget.order.no}',
                     style: AppText.b1b,
                   ),
 
@@ -64,7 +64,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   Space.y!,
 
                   /// info card
-                  const InfoCard(),
+                  InfoCard(order: widget.order),
                 ],
               ),
             ),
