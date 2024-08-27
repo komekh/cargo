@@ -62,9 +62,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(top: 60, bottom: 20),
                       child: Column(
                         children: [
-                          SvgPicture.asset(
-                            AppAssets.logo,
-                            height: AppDimensions.normalize(30),
+                          // SvgPicture.asset(
+                          //   AppAssets.logo,
+                          //   height: AppDimensions.normalize(30),
+                          // ),
+                          Image.asset(
+                            AppAssets.logoPng,
+                            height: AppDimensions.normalize(50),
                           ),
                           Space.yf(0.80),
                           Text(

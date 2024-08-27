@@ -7,7 +7,7 @@ import '../../application/order_detail_bloc/order_detail_bloc.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
 import '../../domain/entities/order/order.dart';
-import '../widgets/map/clustering.dart';
+import '../widgets/clustering.dart';
 import '../widgets/widgets.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
@@ -22,10 +22,12 @@ class OrderDetailsScreen extends StatefulWidget {
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   bool _isFullScreen = false; // Track fullscreen mode
   bool _showLocation = true;
+  final List<String> _images = [];
 
   @override
   void initState() {
     context.read<OrderDetailBloc>().add(GetRoutes(widget.order.cargoId));
+    _setImages();
     _checkLocationStatus();
     super.initState();
   }
@@ -35,6 +37,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       debugPrint('NAME: ${GoodsState.Reserved.name}');
       _showLocation = widget.order.cargoId != emptyGUID;
     });
+  }
+
+  void _setImages() {
+    if (widget.order.image1.isNotEmpty) {
+      _images.add(widget.order.image1);
+    }
+    if (widget.order.image2.isNotEmpty) {
+      _images.add(widget.order.image2);
+    }
+    if (widget.order.image3.isNotEmpty) {
+      _images.add(widget.order.image3);
+    }
   }
 
   void _toggleFullScreen() {
@@ -125,6 +139,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                       /// location card
                       LocationCard(cargoId: widget.order.cargoId),
+
+                      /// gap
+                      Space.y!,
+
+                      ///images widget
+                      ImagesWidget(imageStrings: _images),
+
+                      /// gap
+                      Space.yf(2),
                     ],
                   ),
                 ),
