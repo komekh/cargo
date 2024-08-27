@@ -33,7 +33,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   void _checkLocationStatus() {
     setState(() {
       debugPrint('NAME: ${GoodsState.Reserved.name}');
-      _showLocation = widget.order.state != GoodsState.Reserved.name;
+      _showLocation = widget.order.cargoId != emptyGUID;
     });
   }
 
