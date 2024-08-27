@@ -90,7 +90,7 @@ class OrderCard extends StatelessWidget {
                           width: AppDimensions.normalize(1),
                           height: AppDimensions.normalize(2.5),
                           topColor: AppColors.green,
-                          bottomColor: AppColors.grey,
+                          bottomColor: order.state == GoodsState.Delivered.name ? AppColors.green : AppColors.grey,
                         ),
                       ),
 
@@ -133,8 +133,6 @@ class OrderCard extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  /* */
                 ),
                 // const Spacer(flex: 1),
                 Expanded(

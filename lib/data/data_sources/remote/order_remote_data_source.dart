@@ -37,9 +37,9 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   }
 
   @override
-  Future<RouteResponseModel> getRoutes(String orderId) async {
+  Future<RouteResponseModel> getRoutes(String cargoId) async {
     final response = await client.get(
-      Uri.parse('$baseUrl/Cargo/Route/$orderId'),
+      Uri.parse('$baseUrl/Cargo/Route/$cargoId'),
       headers: {
         'Content-Type': 'application/json',
         'accept': '*/*',

@@ -18,6 +18,9 @@ class OrderEntity extends Equatable {
   final double depth;
   final double width;
   final double height;
+  final String image1;
+  final String image2;
+  final String image3;
 
   const OrderEntity({
     required this.oid,
@@ -37,6 +40,9 @@ class OrderEntity extends Equatable {
     required this.depth,
     required this.width,
     required this.height,
+    required this.image1,
+    required this.image2,
+    required this.image3,
   });
 
   @override

@@ -21,11 +21,20 @@ class OrderDetailsScreen extends StatefulWidget {
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   bool _isFullScreen = false; // Track fullscreen mode
+  bool _showLocation = true;
 
   @override
   void initState() {
     context.read<OrderDetailBloc>().add(GetRoutes(widget.order.cargoId));
+    _checkLocationStatus();
     super.initState();
+  }
+
+  void _checkLocationStatus() {
+    setState(() {
+      debugPrint('NAME: ${GoodsState.Reserved.name}');
+      _showLocation = widget.order.state != GoodsState.Reserved.name;
+    });
   }
 
   void _toggleFullScreen() {
@@ -62,17 +71,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       body: CustomScrollView(
         slivers: [
           /// map
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: _isFullScreen
-                  ? MediaQuery.of(context).size.height // Full screen height
-                  : AppDimensions.normalize(130),
-              child: ClusteringPage(
-                onFullScreenToggle: _toggleFullScreen,
-                isFullScreen: _isFullScreen,
+          if (_showLocation)
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: _isFullScreen
+                    ? MediaQuery.of(context).size.height // Full screen height
+                    : AppDimensions.normalize(130),
+                child: ClusteringPage(
+                  onFullScreenToggle: _toggleFullScreen,
+                  isFullScreen: _isFullScreen,
+                ),
               ),
             ),
-          ),
 
           if (!_isFullScreen) ...[
             /// info text
@@ -98,26 +108,27 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             ),
 
             /// current location info
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: Space.all(1, 1),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'route'.tr(),
-                      style: AppText.b1b,
-                    ),
+            if (_showLocation)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: Space.all(1, 1),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'route'.tr(),
+                        style: AppText.b1b,
+                      ),
 
-                    /// gap
-                    Space.y!,
+                      /// gap
+                      Space.y!,
 
-                    /// location card
-                    LocationCard(cargoId: widget.order.cargoId),
-                  ],
+                      /// location card
+                      LocationCard(cargoId: widget.order.cargoId),
+                    ],
+                  ),
                 ),
               ),
-            ),
           ],
         ],
       ),

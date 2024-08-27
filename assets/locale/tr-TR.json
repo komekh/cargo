@@ -43,5 +43,8 @@
   "order_details": "Giňişleýin",
   "order_from_card": "Nireden",
   "order_to_card": "Nirä",
-  "order_sent": "Ugradylan senesi"
+  "order_sent": "Ugradylan senesi",
+  "Reserved":"Rezerw",
+  "Received":"Kabul edildi",
+  "Delivered":"Gowşuryldy"
 }
