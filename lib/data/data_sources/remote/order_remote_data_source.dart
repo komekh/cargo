@@ -14,11 +14,19 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   final http.Client client;
   OrderRemoteDataSourceImpl({required this.client});
 
+// https://192.168.99.64:5001/api/Goods?pageNumber=1&pageSize=10&state=Reserved&state=Received&state=Delivered
   @override
   Future<OrderResponseModel> getOrders(FilterProductParams params, String token) async {
-    Uri uri = Uri.parse(
-      '$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}${params.state != null ? '&state=${params.state!.name}' : ''}',
-    );
+    Uri uri;
+    if (params.filter == OrderFilter.Home) {
+      uri = Uri.parse(
+        '$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}&state=Reserved&state=Received',
+      );
+    } else {
+      uri = Uri.parse(
+        '$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}&state=Delivered',
+      );
+    }
 
     final response = await client.get(
       uri,

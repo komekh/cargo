@@ -56,7 +56,7 @@ class LocationCard extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '30.02.2024', // routes[index].date,
+                          routes[index].dateAt,
                           style: AppText.b1!.copyWith(color: AppColors.grey),
                         ),
                       ],

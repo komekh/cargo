@@ -7,3 +7,8 @@ enum GoodsState {
   Received,
   Delivered,
 }
+
+enum OrderFilter {
+  Home,
+  History,
+}

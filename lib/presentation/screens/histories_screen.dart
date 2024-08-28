@@ -19,7 +19,7 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<OrderBloc>().add(const GetOrders(FilterProductParams()));
+    context.read<OrderBloc>().add(const GetOrders(FilterProductParams(filter: OrderFilter.History)));
   }
 
   @override

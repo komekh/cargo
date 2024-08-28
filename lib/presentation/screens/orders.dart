@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/order_bloc/order_bloc.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
+import '../../domain/entities/order/filter_params_model.dart';
 import '../widgets/widgets.dart';
 
 class OrdersScreen extends StatefulWidget {
@@ -15,6 +16,12 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClientMixin<OrdersScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<OrderBloc>().add(const GetOrders(FilterProductParams(filter: OrderFilter.Home)));
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -43,14 +50,16 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
                     Text(
                       'my_orders'.tr(),
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Space.yf(0.30),
                     Text(
                       'follow_orders'.tr(),
                       style: const TextStyle(
                         color: Colors.grey,
+                        fontSize: 16,
                       ),
                     ),
                   ],
