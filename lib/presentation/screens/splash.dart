@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../../application/application.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -28,6 +27,7 @@ class SplashScreen extends StatelessWidget {
             (route) => false,
           );
         }
+        FlutterNativeSplash.remove();
       },
       child: Scaffold(
         body: Container(
@@ -51,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                   //   height: AppDimensions.normalize(30),
                   // ),
                   Image.asset(
-                    AppAssets.logoPng,
+                    AppAssets.logoTransparent,
                     height: AppDimensions.normalize(50),
                   ),
                   Space.yf(0.80),

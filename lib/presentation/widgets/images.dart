@@ -43,6 +43,21 @@ class ImagesWidget extends StatelessWidget {
                   return const Icon(Icons.broken_image, size: 100);
                 },
               ),
+
+              /* CachedNetworkImage(
+                imageUrl: '$imageUrl/$imageString',
+                fit: BoxFit.contain, // Maintains the aspect ratio of the image
+                placeholder: (context, url) => const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                width: AppDimensions.normalize(60),
+                height: AppDimensions.normalize(60),
+                errorWidget: (context, url, error) => const Icon(Icons.broken_image, size: 200, color: Colors.white),
+              ), */
             ),
           );
         }).toList(),

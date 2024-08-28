@@ -1,5 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FullScreenImageScreen extends StatelessWidget {
   final String imageUrl;
@@ -31,3 +31,13 @@ class FullScreenImageScreen extends StatelessWidget {
     );
   }
 }
+
+
+/**
+            CachedNetworkImage(
+            imageUrl: imageUrl,
+            fit: BoxFit.contain, // Maintains the aspect ratio of the image
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.broken_image, size: 200, color: Colors.white),
+          ),
+ */

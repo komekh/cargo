@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../application/user_bloc/user_bloc.dart';
 import '../../configs/configs.dart';
@@ -67,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //   height: AppDimensions.normalize(30),
                           // ),
                           Image.asset(
-                            AppAssets.logoPng,
+                            AppAssets.logoTransparent,
                             height: AppDimensions.normalize(50),
                           ),
                           Space.yf(0.80),

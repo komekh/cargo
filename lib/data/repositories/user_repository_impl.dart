@@ -37,6 +37,8 @@ class UserRepositoryImpl implements UserRepository {
       return Right(user);
     } on CacheFailure {
       return Left(CacheFailure());
+    } catch (error) {
+      return Left(ExceptionFailure());
     }
   }
 
@@ -47,6 +49,8 @@ class UserRepositoryImpl implements UserRepository {
       return Right(NoParams());
     } on CacheFailure {
       return Left(CacheFailure());
+    } catch (error) {
+      return Left(ExceptionFailure());
     }
   }
 
@@ -67,6 +71,8 @@ class UserRepositoryImpl implements UserRepository {
       return Right(user);
     } on Failure catch (failure) {
       return Left(failure);
+    } catch (error) {
+      return Left(ExceptionFailure());
     }
   }
 }

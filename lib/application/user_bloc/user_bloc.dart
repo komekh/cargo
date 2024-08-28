@@ -82,6 +82,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   UserState _mapFailureToState(Failure failure) {
+    debugPrint('FAIL');
     if (failure is ServerFailure) {
       return UserLoggedFail(ServerFailure());
     } else if (failure is CacheFailure) {
