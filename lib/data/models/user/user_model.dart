@@ -29,7 +29,7 @@ class UserModel extends User {
 
   Map<String, dynamic> toJson() => {
         'Oid': oid,
-        'FulName': fullName,
+        'Fulname': fullName,
         'PhoneNo': phone,
       };
 }

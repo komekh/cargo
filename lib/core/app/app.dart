@@ -1,10 +1,10 @@
+import 'package:cargo/application/contact_cubit/contact_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
 import '../../di/di.dart' as di;
-import '../../domain/entities/order/filter_params_model.dart';
 import '../core.dart';
 
 class MyApp extends StatelessWidget {
@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<NavigationCubit>()),
         BlocProvider(
           create: (context) => di.sl<SplashCubit>()..checkToken(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ContactCubit>(),
         ),
         BlocProvider(
           create: (context) => di.sl<LanguageBloc>()..add(LanguageInitial()),

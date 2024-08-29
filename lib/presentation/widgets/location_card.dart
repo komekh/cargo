@@ -52,7 +52,7 @@ class LocationCard extends StatelessWidget {
                         Space.x!,
                         Text(
                           routes[index].name,
-                          style: AppText.b1b,
+                          style: AppText.h3b,
                         ),
                         const Spacer(),
                         Text(

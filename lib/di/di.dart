@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 import 'common.dart';
+import 'contact.dart';
 import 'cubits.dart';
 import 'language.dart';
 import 'order.dart';
@@ -17,6 +18,7 @@ Future<void> init() async {
   registerLanguageFeature();
   registerSplashFeature();
   registerOrderFeature();
+  registerContactFeature();
   // registerCategoryFeature();
   // registerProductFeature();
   // registerDeliveryInfoFeature();

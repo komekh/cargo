@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class RetryWidget extends StatelessWidget {
@@ -7,7 +8,7 @@ class RetryWidget extends StatelessWidget {
   const RetryWidget({
     super.key,
     required this.onRetry,
-    this.message = 'Something went wrong. Please try again.',
+    this.message = 'error_message',
   });
 
   @override
@@ -19,7 +20,7 @@ class RetryWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              message,
+              message.tr(),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 16, color: Colors.black54),
             ),

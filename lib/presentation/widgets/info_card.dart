@@ -60,10 +60,11 @@ class RowTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: AppText.b1!.copyWith(
+          style: AppText.h3!.copyWith(
             color: const Color(0xFF57575C),
           ),
           maxLines: 2,
@@ -72,7 +73,7 @@ class RowTextWidget extends StatelessWidget {
         Expanded(
           child: Text(
             info,
-            style: AppText.b1!.copyWith(
+            style: AppText.h3!.copyWith(
               color: const Color(0xFF0C0C0D),
               fontWeight: FontWeight.w500,
             ),

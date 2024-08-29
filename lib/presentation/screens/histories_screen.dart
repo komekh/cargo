@@ -50,6 +50,7 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
                       'order_history'.tr(),
                       style: AppText.h1b,
                     ),
+                    Space.yf(0.4),
                     Text(
                       'order_history_desc'.tr(),
                       style: const TextStyle(
@@ -77,6 +78,12 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
                     ),
                   );
                 } else if (state is OrderLoaded) {
+                  if (state.orders.isEmpty) {
+                    return const SliverToBoxAdapter(
+                      child: EmptyOrder(),
+                    );
+                  }
+
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
@@ -93,11 +100,7 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
                     ),
                   );
                 } else {
-                  return SliverToBoxAdapter(
-                    child: Center(
-                      child: Text('order_not_available'.tr()),
-                    ),
-                  );
+                  return const SizedBox.shrink();
                 }
               },
             ),

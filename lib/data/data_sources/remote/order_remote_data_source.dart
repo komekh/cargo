@@ -20,7 +20,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
     Uri uri;
     if (params.filter == OrderFilter.Home) {
       uri = Uri.parse(
-        '$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}&state=Reserved&state=Received',
+        '$baseUrl/Goods?pageNumber=${params.offset}&pageSize=${params.limit}&state=Received',
       );
     } else {
       uri = Uri.parse(

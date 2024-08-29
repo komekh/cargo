@@ -6,6 +6,11 @@ import '../../core/core.dart';
 import '../../domain/domain.dart';
 import 'vertical_line.dart';
 
+final infoStyle = AppText.b2b!.copyWith(
+  color: const Color(0xFF57575C),
+  fontSize: 16,
+);
+
 class OrderCard extends StatelessWidget {
   final OrderEntity order;
 
@@ -61,10 +66,29 @@ class OrderCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Text(
+                /* Text(
                   '${'order_sent'.tr()}: ${order.departedAt}',
                   style: AppText.b2b!.copyWith(
                     color: AppColors.grey,
+                  ),
+                ), */
+
+                RichText(
+                  text: TextSpan(
+                    text: '${'order_sent'.tr()}: ',
+                    style: AppText.b2b!.copyWith(
+                      color: AppColors.grey,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: order.departedAt,
+                        style: AppText.b2b!.copyWith(
+                          color: const Color(0xFF57575C),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -107,9 +131,7 @@ class OrderCard extends StatelessWidget {
                             ),
                             Text(
                               order.from,
-                              style: AppText.b2b!.copyWith(
-                                color: const Color(0xFF57575C),
-                              ),
+                              style: infoStyle,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -122,9 +144,7 @@ class OrderCard extends StatelessWidget {
                             ),
                             Text(
                               order.to,
-                              style: AppText.b2b!.copyWith(
-                                color: const Color(0xFF57575C),
-                              ),
+                              style: infoStyle,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -148,9 +168,7 @@ class OrderCard extends StatelessWidget {
                       ),
                       Text(
                         order.placesCount.toString(),
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF57575C),
-                        ),
+                        style: infoStyle,
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -161,9 +179,7 @@ class OrderCard extends StatelessWidget {
                       ),
                       Text(
                         order.volume.toString(),
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF57575C),
-                        ),
+                        style: infoStyle,
                       ),
                     ],
                   ),
@@ -194,9 +210,7 @@ class OrderCard extends StatelessWidget {
                       ),
                       Text(
                         order.shopNo,
-                        style: AppText.b2b!.copyWith(
-                          color: const Color(0xFF57575C),
-                        ),
+                        style: infoStyle,
                       ),
                     ],
                   ),

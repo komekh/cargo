@@ -108,7 +108,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   children: [
                     Text(
                       '${'order_info'.tr()} №${widget.order.no}',
-                      style: AppText.b1b,
+                      style: AppText.h2b,
                     ),
 
                     /// gap
@@ -131,7 +131,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                     children: [
                       Text(
                         'route'.tr(),
-                        style: AppText.b1b,
+                        style: AppText.h2b,
                       ),
 
                       /// gap

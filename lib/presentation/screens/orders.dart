@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/order_bloc/order_bloc.dart';
@@ -54,7 +55,7 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Space.yf(0.30),
+                    Space.yf(0.40),
                     Text(
                       'follow_orders'.tr(),
                       style: const TextStyle(
@@ -83,6 +84,14 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
                     ),
                   );
                 } else if (state is OrderLoaded) {
+                  if (state.orders.isEmpty) {
+                    return SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height / 2.5,
+                        child: const EmptyOrder(),
+                      ),
+                    );
+                  }
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
@@ -99,11 +108,7 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
                     ),
                   );
                 } else {
-                  return const SliverToBoxAdapter(
-                    child: Center(
-                      child: Text('No orders available'),
-                    ),
-                  );
+                  return const SizedBox.shrink();
                 }
               },
             ),

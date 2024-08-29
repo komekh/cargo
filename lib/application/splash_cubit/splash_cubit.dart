@@ -18,7 +18,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit(this._splashUseCase) : super(SplashInitial());
 
   Future<void> checkToken() async {
-    await Future.delayed(const Duration(seconds: 1)); // Simulating some loading time
+    // await Future.delayed(const Duration(seconds: 1)); // Simulating some loading time
     try {
       final result = await _splashUseCase(NoParams());
       result.fold((failure) => emit(NavigateToSplash2()), (result) {
