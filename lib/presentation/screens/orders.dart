@@ -69,7 +69,7 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
             ),
             BlocBuilder<OrderBloc, OrderState>(
               builder: (context, state) {
-                if (state is OrderLoading && state.orders.isEmpty) {
+                if (state is OrderLoading && state.orders.isEmpty || state is OrderInitial) {
                   return const SliverToBoxAdapter(
                     child: Center(
                       child: CircularProgressIndicator(),
@@ -108,7 +108,9 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
                     ),
                   );
                 } else {
-                  return const SizedBox.shrink();
+                  return const SliverToBoxAdapter(
+                    child: SizedBox.shrink(),
+                  );
                 }
               },
             ),

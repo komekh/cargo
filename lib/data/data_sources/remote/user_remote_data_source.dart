@@ -25,7 +25,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       },
       body: json.encode(
         {
-          'UserName': params.username,
+          'UserName': params.username.trim(),
           'Password': params.password,
         },
       ),

@@ -100,7 +100,9 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
                     ),
                   );
                 } else {
-                  return const SizedBox.shrink();
+                  return const SliverToBoxAdapter(
+                    child: SizedBox.shrink(),
+                  );
                 }
               },
             ),

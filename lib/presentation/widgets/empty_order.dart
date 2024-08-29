@@ -15,7 +15,17 @@ class EmptyOrder extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(AppAssets.search),
+            ColorFiltered(
+              colorFilter: const ColorFilter.mode(
+                AppColors.surface,
+                BlendMode.multiply,
+              ),
+              child: Image.asset(
+                AppAssets.searchGif,
+                height: 120,
+                width: 120,
+              ),
+            ),
             Space.yf(),
             Text('order_not_available'.tr()),
           ],
