@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:another_stepper/another_stepper.dart';
 import 'package:cargo/core/constants/colors.dart';
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:collection/collection.dart';
 
-import '../../core/constants/assets.dart';
 import '../../core/errors/failures.dart';
 import '../../domain/entities/route/route.dart';
 import '../../domain/usecases/order/get_routes_usecase.dart';
@@ -74,12 +73,15 @@ class OrderDetailBloc extends Bloc<OrderDetailEvent, OrderDetailState> {
                     ),
                   ),
                   iconWidget: isSplashedIcon
-                      ? Image.asset(
-                          AppAssets.circle,
-                          color: iconColor,
+                      ? CircleWithGapWidget(
+                          radius: 7,
+                          fillColor: iconColor,
+                          borderColor: iconColor,
+                          borderWidth: 2,
+                          gap: 3.0,
                         )
                       : CirclePainterWidget(
-                          radius: 8,
+                          radius: 9,
                           color: iconColor,
                         ),
                 );
