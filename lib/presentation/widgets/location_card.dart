@@ -1,10 +1,11 @@
+import 'package:another_stepper/another_stepper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/application.dart';
 import '../../configs/configs.dart';
 import '../../core/core.dart';
-import 'dashed_line.dart';
 import 'retry_widget.dart';
 
 class LocationCard extends StatelessWidget {
@@ -16,69 +17,43 @@ class LocationCard extends StatelessWidget {
     return BlocBuilder<OrderDetailBloc, OrderDetailState>(
       builder: (context, state) {
         if (state is RoutesLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const SizedBox.shrink();
+          // const Center(
+          //   child: CircularProgressIndicator(),
+          // );
         } else if (state is RoutesLoaded) {
-          final routes = state.routes;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'route'.tr(),
+                style: AppText.h2b,
+              ),
 
-          return SizedBox(
-            width: double.infinity,
-            child: Card(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final route = routes[index];
-                    return Row(
-                      children: [
-                        route.isCurrent
-                            ? const Icon(
-                                Icons.radio_button_checked,
-                                color: AppColors.primary,
-                              )
-                            : Container(
-                                margin: Space.hf(0.35),
-                                height: AppDimensions.normalize(4.5),
-                                width: AppDimensions.normalize(4.5),
-                                decoration: const BoxDecoration(
-                                  color: AppColors.grey,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                        Space.x!,
-                        Text(
-                          routes[index].name,
-                          style: AppText.h3b,
-                        ),
-                        const Spacer(),
-                        Text(
-                          routes[index].dateAt,
-                          style: AppText.b1!.copyWith(color: AppColors.grey),
-                        ),
-                      ],
-                    );
-                  },
-                  itemCount: routes.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: Space.vf(0.5),
-                      child: DashedLine(
-                        height: 1,
-                        width: AppDimensions.normalize(8),
-                        color: AppColors.lightGrey,
-                        strokeWidth: 1,
-                        dashWidth: 5,
-                        dashSpace: AppDimensions.normalize(2),
-                      ),
-                    );
-                  },
+              /// gap
+              Space.y!,
+              SizedBox(
+                width: double.infinity,
+                child: Card(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: AnotherStepper(
+                      stepperList: state.steppers,
+                      stepperDirection: Axis.vertical,
+                      iconWidth: 30,
+                      iconHeight: 30,
+                      activeBarColor: AppColors.greenDark,
+                      inActiveBarColor: AppColors.darkGrey,
+                      inverted: false,
+                      verticalGap: 25,
+                      activeIndex: state.activeIndex,
+                      barThickness: 2.6,
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           );
         } else if (state is RoutesError) {
           return Center(

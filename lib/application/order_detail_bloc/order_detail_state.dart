@@ -13,9 +13,15 @@ class RoutesLoading extends OrderDetailState {}
 
 class RoutesLoaded extends OrderDetailState {
   final List<RouteEntity> routes;
-  const RoutesLoaded({required this.routes});
+  final List<StepperData> steppers;
+  final int activeIndex;
+  const RoutesLoaded({
+    required this.routes,
+    required this.steppers,
+    required this.activeIndex,
+  });
   @override
-  List<Object> get props => [routes];
+  List<Object> get props => [routes, steppers, activeIndex];
 }
 
 class RoutesError extends OrderDetailState {

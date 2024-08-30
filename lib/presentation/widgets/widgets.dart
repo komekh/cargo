@@ -13,3 +13,4 @@ export 'successful_auth_dialog.dart';
 export 'vertical_line.dart';
 export 'images.dart';
 export 'empty_order.dart';
+export 'circle_painter.dart';

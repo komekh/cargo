@@ -99,6 +99,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             ),
 
           if (!_isFullScreen) ...[
+            /// current location info
+            if (_showLocation)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: Space.all(1, 1),
+                  child: LocationCard(cargoId: widget.order.cargoId),
+                ),
+              ),
+
             /// info text
             SliverToBoxAdapter(
               child: Padding(
@@ -116,42 +125,19 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
                     /// info card
                     InfoCard(order: widget.order),
+
+                    /// gap
+                    Space.y!,
+
+                    ///images widget
+                    ImagesWidget(imageStrings: _images),
+
+                    /// gap
+                    Space.yf(2),
                   ],
                 ),
               ),
             ),
-
-            /// current location info
-            if (_showLocation)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: Space.all(1, 1),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'route'.tr(),
-                        style: AppText.h2b,
-                      ),
-
-                      /// gap
-                      Space.y!,
-
-                      /// location card
-                      LocationCard(cargoId: widget.order.cargoId),
-
-                      /// gap
-                      Space.y!,
-
-                      ///images widget
-                      ImagesWidget(imageStrings: _images),
-
-                      /// gap
-                      Space.yf(2),
-                    ],
-                  ),
-                ),
-              ),
           ],
         ],
       ),

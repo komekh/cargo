@@ -10,6 +10,8 @@ sealed class AppAssets {
   static const String boxesPng = 'assets/images/boxes.png';
   static const String trucksPng = 'assets/images/trucks.png';
   static const String header = 'assets/images/header.png';
+  static const String circle = 'assets/images/circle.png';
+  static const String circle2 = 'assets/images/circle2.png';
   static const String search = 'assets/images/search.png';
   static const String searchGif = 'assets/images/search.gif';
 }
