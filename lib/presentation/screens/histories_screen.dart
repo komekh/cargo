@@ -64,9 +64,12 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
             BlocBuilder<OrderBloc, OrderState>(
               builder: (context, state) {
                 if (state is OrderLoading && state.orders.isEmpty) {
-                  return const SliverToBoxAdapter(
-                    child: Center(
-                      child: CircularProgressIndicator(),
+                  return SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height - kToolbarHeight * 3,
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   );
                 } else if (state is OrderError && state.orders.isEmpty) {
