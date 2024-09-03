@@ -131,6 +131,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
 
+                              Space.yf(0.5),
+
                               Text(
                                 'login_desc'.tr(),
                                 style: const TextStyle(

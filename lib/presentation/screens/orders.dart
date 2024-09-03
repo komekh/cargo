@@ -91,7 +91,7 @@ class _OrdersScreenState extends State<OrdersScreen> with AutomaticKeepAliveClie
                     return SliverToBoxAdapter(
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 2.5,
-                        child: const EmptyOrder(),
+                        child: EmptyOrder(text: 'order_empty'.tr()),
                       ),
                     );
                   }

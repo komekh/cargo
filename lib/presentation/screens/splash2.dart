@@ -34,6 +34,7 @@ class Splash2Screen extends StatelessWidget {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   'cargo_app'.tr(),
@@ -41,6 +42,7 @@ class Splash2Screen extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 40,
                   ),
+                  textAlign: TextAlign.center,
                 ),
 
                 /// gap
@@ -53,6 +55,7 @@ class Splash2Screen extends StatelessWidget {
                     color: AppColors.yellow,
                     fontSize: 22,
                   ),
+                  textAlign: TextAlign.center,
                 ),
 
                 /// gap

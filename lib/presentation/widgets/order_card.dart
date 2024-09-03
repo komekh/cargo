@@ -60,7 +60,7 @@ class OrderCard extends StatelessWidget {
                 const Icon(Icons.circle, color: AppColors.green, size: 12),
                 const SizedBox(width: 4),
                 Text(
-                  order.state,
+                  order.state.tr(),
                   style: AppText.b2b!.copyWith(
                     color: AppColors.grey,
                   ),

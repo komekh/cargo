@@ -19,7 +19,7 @@ class InfoCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RowTextWidget(title: '${'order_status'.tr()}:', info: order.state),
+              RowTextWidget(title: '${'order_status'.tr()}:', info: order.state.tr()),
               Space.y!,
               RowTextWidget(title: '${'order_carrier'.tr()}:', info: order.carrier),
               Space.y!,

@@ -1,11 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/space.dart';
 import '../../core/constants/constants.dart';
 
 class EmptyOrder extends StatelessWidget {
-  const EmptyOrder({super.key});
+  final String text;
+  const EmptyOrder({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class EmptyOrder extends StatelessWidget {
               ),
             ),
             Space.yf(),
-            Text('order_not_available'.tr()),
+            Text(text),
           ],
         ),
       ),

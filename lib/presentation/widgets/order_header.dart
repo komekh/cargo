@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -24,15 +25,19 @@ class OrderHeader extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Cargo goşundy',
-                  style: AppText.h1b?.copyWith(
-                    color: Colors.white,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.50,
+                  child: Text(
+                    'cargo_app'.tr(),
+                    style: AppText.h1b?.copyWith(
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Space.yf(0.30),
                 Text(
-                  'Öz sargydyňyzy yzarlaň',
+                  'follow_orders_banner'.tr(),
                   style: AppText.b1?.copyWith(
                     color: AppColors.yellow,
                   ),

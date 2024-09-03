@@ -82,8 +82,10 @@ class _HistoriesScreenState extends State<HistoriesScreen> {
                   );
                 } else if (state is OrderLoaded) {
                   if (state.orders.isEmpty) {
-                    return const SliverToBoxAdapter(
-                      child: EmptyOrder(),
+                    return SliverToBoxAdapter(
+                      child: EmptyOrder(
+                        text: 'order_not_available'.tr(),
+                      ),
                     );
                   }
 
