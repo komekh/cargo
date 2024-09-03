@@ -6,7 +6,7 @@
   "order_history_desc": "şu ýerde siziň öňki sargytlaryňyz wagt tertipi boyunça görkezilendir",
   "order_not_available": "Siziň ýapylan sargytlaryňyz ýok",
   "personal_cabinet": "Şahsy otag",
-  "splash_text": "Довезём всё!",
+  "splash_text": "Ýükleri daşamakda siziň ynamdar hyzmatdaşyňyz!",
   "start_tracking": "Ulgama gir",
   "track_cargo": "Ýükiňizi 24 sagadyň dowamynda yzarlamak indi elýeterli",
   "cargo_app": "Cargo 66 mobil goşundy",
@@ -49,6 +49,6 @@
   "Delivered": "Gowşuryldy",
   "image_preview": "Surat",
   "error_message": "Näsazlyk ýüze çykdy. Täzeden synanşyp görmegiňizi haýyş edýäris.",
-  "follow_orders_banner": "Öz sargydyňyzy yzarlaň",
-  "order_empty": "Siziň heniz sargydyňyz ýok"
+  "follow_orders_banner": "Ýükiňizi 24 sagadyň dowamynda yzarlamak indi elýeterli",
+  "order_empty": "Siziň entäk sargydyňyz ýok"
 }
