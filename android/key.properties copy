@@ -1,0 +1,4 @@
+storePassword=cargo66
+keyPassword=cargo66
+keyAlias=upload
+storeFile=upload-keystore.jks
