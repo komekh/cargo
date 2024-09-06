@@ -31,7 +31,7 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '№${order.no}',
+                  '№ ${order.no}',
                   style: AppText.b1b,
                 ),
                 GestureDetector(

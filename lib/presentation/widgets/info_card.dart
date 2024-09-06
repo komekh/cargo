@@ -33,10 +33,10 @@ class InfoCard extends StatelessWidget {
               Space.y!,
               RowTextWidget(title: '${'order_volume'.tr()}:', info: order.volume.toString()),
               Space.y!,
-              RowTextWidget(
+              /* RowTextWidget(
                   title: '${'order_dimensions'.tr()}:',
                   info: '${order.width}x${order.depth}x${order.height} ${'order_dimensions_desc'.tr()}'),
-              Space.y!,
+              Space.y!, */
               RowTextWidget(title: '${'order_product_name'.tr()}:', info: order.name),
               // Space.y!,
               //  RowTextWidget(title: 'Sargydyň bahasy:', info: order.price),

@@ -5,6 +5,7 @@ class OrderEntity extends Equatable {
   final String clientId;
   final String cargoId;
   final String state;
+  final String cargoState;
   final String no;
   final String name;
   final String shopNo;
@@ -14,19 +15,22 @@ class OrderEntity extends Equatable {
   final String from;
   final String to;
   final String departedAt;
-  final String arrivedAt;
-  final double depth;
-  final double width;
-  final double height;
-  final String image1;
-  final String image2;
-  final String image3;
+  // final String arrivedAt;
+  // final double depth;
+  // final double width;
+  // final double height;
+  // final String image1;
+  // final String image2;
+  // final String image3;
+  final String invoice;
+  final String image;
 
   const OrderEntity({
     required this.oid,
     required this.clientId,
     required this.cargoId,
     required this.state,
+    required this.cargoState,
     required this.no,
     required this.name,
     required this.shopNo,
@@ -36,13 +40,15 @@ class OrderEntity extends Equatable {
     required this.from,
     required this.to,
     required this.departedAt,
-    required this.arrivedAt,
-    required this.depth,
-    required this.width,
-    required this.height,
-    required this.image1,
-    required this.image2,
-    required this.image3,
+    // required this.arrivedAt,
+    // required this.depth,
+    // required this.width,
+    // required this.height,
+    // required this.image1,
+    // required this.image2,
+    // required this.image3,
+    required this.invoice,
+    required this.image,
   });
 
   @override

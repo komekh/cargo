@@ -58,18 +58,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(top: 60, bottom: 20),
+                      padding: const EdgeInsets.only(top: 20, bottom: 20),
                       child: Column(
                         children: [
                           // SvgPicture.asset(
                           //   AppAssets.logo,
                           //   height: AppDimensions.normalize(30),
                           // ),
+                          Space.yf(4),
+
                           Image.asset(
-                            AppAssets.logoTransparent,
-                            height: AppDimensions.normalize(50),
+                            AppAssets.logoLogin,
                           ),
-                          Space.yf(0.80),
+                          Space.yf(0.50),
                           Text(
                             appTitle,
                             style: AppText.h1b?.copyWith(
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           Space.yf(0.30),
                           Text(
-                            'Довезём всё!',
+                            'deliver_all'.tr(),
                             style: AppText.b1?.copyWith(
                               color: AppColors.yellow,
                             ),

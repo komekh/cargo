@@ -26,7 +26,7 @@
   "order": "Sargyt",
   "order_info": "Sargyt barada maglumat",
   "route": "Gatnaw ýoly",
-  "order_status": "Ýük",
+  "order_status": "Ýagdaýy",
   "order_carrier": "Awtoulag №",
   "order_shop": "Dükan №",
   "order_from": "Nireden ugradyldy",
@@ -50,5 +50,6 @@
   "image_preview": "Surat",
   "error_message": "Näsazlyk ýüze çykdy. Täzeden synanşyp görmegiňizi haýyş edýäris.",
   "follow_orders_banner": "Ýükiňizi 24 sagadyň dowamynda yzarlamak indi elýeterli",
-  "order_empty": "Siziň entäk sargydyňyz ýok"
+  "order_empty": "Siziň entäk sargydyňyz ýok",
+  "deliver_all": "Ähli zady eltip bereris!"
 }

@@ -17,18 +17,21 @@ class OrderModel extends OrderEntity {
     required super.from,
     required super.to,
     required super.departedAt,
-    required super.arrivedAt,
-    required super.depth,
-    required super.width,
-    required super.height,
-    required super.image1,
-    required super.image2,
-    required super.image3,
+    // required super.arrivedAt,
+    // required super.depth,
+    // required super.width,
+    // required super.height,
+    // required super.image1,
+    // required super.image2,
+    // required super.image3,
+    required super.cargoState,
+    required super.invoice,
+    required super.image,
   });
   // Factory method to create an instance of CargoEntity from JSON
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     DateTime? departedAt = json['DepartedAt'] != null ? DateTime.parse(json['DepartedAt']) : null;
-    DateTime? arrivedAt = json['ArrivedAt'] != null ? DateTime.parse(json['ArrivedAt']) : null;
+    // DateTime? arrivedAt = json['ArrivedAt'] != null ? DateTime.parse(json['ArrivedAt']) : null;
     return OrderModel(
       oid: json['Oid'],
       clientId: json['ClientId'],
@@ -43,13 +46,16 @@ class OrderModel extends OrderEntity {
       from: json['From'] ?? '',
       to: json['To'] ?? '',
       departedAt: DateUtil.formatDateTimeToDDMMYYYY(departedAt),
-      arrivedAt: DateUtil.formatDateTimeToDDMMYYYY(arrivedAt),
-      depth: json['Depth'].toDouble(),
-      width: json['Width'].toDouble(),
-      height: json['Height'].toDouble(),
-      image1: json['Image1'] ?? '',
-      image2: json['Image2'] ?? '',
-      image3: json['Image3'] ?? '',
+      // arrivedAt: DateUtil.formatDateTimeToDDMMYYYY(arrivedAt),
+      // depth: json['Depth'].toDouble(),
+      // width: json['Width'].toDouble(),
+      // height: json['Height'].toDouble(),
+      // image1: json['Image1'] ?? '',
+      // image2: json['Image2'] ?? '',
+      // image3: json['Image3'] ?? '',
+      cargoState: json['CargoState'],
+      invoice: json['Invoice'],
+      image: json['Image'],
     );
   }
 

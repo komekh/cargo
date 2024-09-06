@@ -26,7 +26,7 @@
   "order": "Заказ",
   "order_info": "Информация о заказе",
   "route": "Маршруте",
-  "order_status": "Груз",
+  "order_status": "Статус",
   "order_carrier": "Автомашина №",
   "order_shop": "Магазин №",
   "order_from": "Откуда",
@@ -50,5 +50,6 @@
   "image_preview": "Предварительный просмотр",
   "error_message": "Что-то пошло не так. Пожалуйста, попробуйте еще раз.",
   "follow_orders_banner": "Отслеживайте ваш груз 24/7",
-  "order_empty": "У вас пока нет заказов"
+  "order_empty": "У вас пока нет заказов",
+  "deliver_all": "Довезём всё!"
 }

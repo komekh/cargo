@@ -20,7 +20,7 @@ class OrderDetailsScreen extends StatefulWidget {
 }
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  bool _isFullScreen = false; // Track fullscreen mode
+  bool _isFullScreen = false; // Track fullScreen mode
   bool _showLocation = true;
   final List<String> _images = [];
 
@@ -40,14 +40,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   }
 
   void _setImages() {
-    if (widget.order.image1.isNotEmpty) {
-      _images.add(widget.order.image1);
+    if (widget.order.invoice.isNotEmpty) {
+      _images.add(widget.order.invoice);
     }
-    if (widget.order.image2.isNotEmpty) {
-      _images.add(widget.order.image2);
-    }
-    if (widget.order.image3.isNotEmpty) {
-      _images.add(widget.order.image3);
+    if (widget.order.image.isNotEmpty) {
+      _images.add(widget.order.image);
     }
   }
 
@@ -56,10 +53,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       _isFullScreen = !_isFullScreen;
 
       if (_isFullScreen) {
-        // Enter fullscreen mode
+        // Enter fullScreen mode
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       } else {
-        // Exit fullscreen mode
+        // Exit fullScreen mode
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       }
     });
@@ -71,7 +68,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     return Scaffold(
       backgroundColor: AppColors.surface,
       appBar: _isFullScreen
-          ? null // Hide the app bar in fullscreen mode
+          ? null // Hide the app bar in fullScreen mode
           : AppBar(
               iconTheme: const IconThemeData(
                 color: Colors.white,
@@ -116,7 +113,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${'order_info'.tr()} №${widget.order.no}',
+                      '${'order_info'.tr()} № ${widget.order.no}',
                       style: AppText.h2b,
                     ),
 
