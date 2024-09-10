@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCMbx3GD8XMCI9vdrQvIy6nTr-kiNx2f9k</string>
+	<string>AIzaSyBGhux9ymnIWi3Rn9oEcJwhajpbv6dOmD8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>598107454568</string>
+	<string>549920095819</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.cargo</string>
+	<string>com.cargo66.com</string>
 	<key>PROJECT_ID</key>
-	<string>cargo66</string>
+	<string>cargo-66</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cargo66.appspot.com</string>
+	<string>cargo-66.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:598107454568:ios:3bbcc27922926fe7314fdd</string>
+	<string>1:549920095819:ios:453c3c65aa0eea219c57ce</string>
 </dict>
 </plist>

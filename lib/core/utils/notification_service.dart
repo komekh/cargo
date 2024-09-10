@@ -258,10 +258,10 @@ Future<void> initFCMFunctions() async {
   await fcmFunctions.iosWebPermission();
 
   FirebaseMessaging.onBackgroundMessage(onBackgroundHandler);
+  fcmFunctions.foreGroundMessageListener();
 
   // final String? token = await fcmFunctions.getFCMToken();
   fcmFunctions.tokenListener();
-  fcmFunctions.foreGroundMessageListener();
   await fcmFunctions.subscribeToTopics('notifications');
 }
 

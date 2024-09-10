@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB4aGhjQIDs6neCWrrITI6iujKhKm2Y9cg',
-    appId: '1:598107454568:android:b2b6e38663f71e9e314fdd',
-    messagingSenderId: '598107454568',
-    projectId: 'cargo66',
-    storageBucket: 'cargo66.appspot.com',
+    apiKey: 'AIzaSyDkny4pko80moWVsuMfN2rPpTAr1TGe8LM',
+    appId: '1:549920095819:android:b07d0bd97da6408c9c57ce',
+    messagingSenderId: '549920095819',
+    projectId: 'cargo-66',
+    storageBucket: 'cargo-66.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCMbx3GD8XMCI9vdrQvIy6nTr-kiNx2f9k',
-    appId: '1:598107454568:ios:3bbcc27922926fe7314fdd',
-    messagingSenderId: '598107454568',
-    projectId: 'cargo66',
-    storageBucket: 'cargo66.appspot.com',
-    iosBundleId: 'com.example.cargo',
+    apiKey: 'AIzaSyBGhux9ymnIWi3Rn9oEcJwhajpbv6dOmD8',
+    appId: '1:549920095819:ios:453c3c65aa0eea219c57ce',
+    messagingSenderId: '549920095819',
+    projectId: 'cargo-66',
+    storageBucket: 'cargo-66.appspot.com',
+    iosBundleId: 'com.cargo66.com',
   );
+
 }

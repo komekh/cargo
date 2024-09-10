@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "598107454568",
-    "project_id": "cargo66",
-    "storage_bucket": "cargo66.appspot.com"
+    "project_number": "549920095819",
+    "project_id": "cargo-66",
+    "storage_bucket": "cargo-66.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:598107454568:android:b2b6e38663f71e9e314fdd",
+        "mobilesdk_app_id": "1:549920095819:android:b07d0bd97da6408c9c57ce",
         "android_client_info": {
           "package_name": "com.cargo66.com"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB4aGhjQIDs6neCWrrITI6iujKhKm2Y9cg"
+          "current_key": "AIzaSyDkny4pko80moWVsuMfN2rPpTAr1TGe8LM"
         }
       ],
       "services": {
