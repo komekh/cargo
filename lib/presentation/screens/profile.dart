@@ -62,73 +62,72 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildProfileContent(BuildContext context, User user) {
     return Padding(
       padding: Space.all(1, 1),
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// gap
-                Space.yf(1.3),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// gap
+            Space.yf(1.3),
 
-                /// header
-                Text(
-                  'personal_cabinet'.tr(),
-                  style: AppText.h1b,
-                ),
-
-                Space.y!,
-
-                /// user card
-                _buildUserCard(context, user),
-
-                ///gap
-                Space.yf(2),
-
-                /// settings card
-                _buildSettingsCard(context),
-
-                ///gap
-                Space.yf(2),
-
-                /// contacts list
-                BlocBuilder<ContactCubit, ContactState>(
-                  builder: (context, state) {
-                    if (state is ContactLoading) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (state is ContactLoaded) {
-                      return state.contacts.isEmpty ? const SizedBox.shrink() : _buildContactsList(state.contacts);
-                    } else if (state is ContactError) {
-                      return RetryWidget(
-                        onRetry: () {
-                          context.read<ContactCubit>().getContacts();
-                        },
-                      );
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  },
-                ),
-              ],
+            /// header
+            Text(
+              'personal_cabinet'.tr(),
+              style: AppText.h1b,
             ),
-          ),
 
-          /// logout at the bottom
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: TextButton(
-              onPressed: () {
-                context.read<UserBloc>().add(SignOutUser());
+            Space.y!,
+
+            /// user card
+            _buildUserCard(context, user),
+
+            ///gap
+            Space.yf(2),
+
+            /// settings card
+            _buildSettingsCard(context),
+
+            ///gap
+            Space.yf(2),
+
+            /// contacts list
+            BlocBuilder<ContactCubit, ContactState>(
+              builder: (context, state) {
+                if (state is ContactLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is ContactLoaded) {
+                  return state.contacts.isEmpty ? const SizedBox.shrink() : _buildContactsList(state.contacts);
+                } else if (state is ContactError) {
+                  return RetryWidget(
+                    onRetry: () {
+                      context.read<ContactCubit>().getContacts();
+                    },
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
               },
-              child: Text(
-                'logout'.tr(),
-                style: AppText.b1!.copyWith(
-                  color: Colors.red,
+            ),
+
+            ///gap
+            Space.yf(3),
+
+            /// logout at the bottom
+            Align(
+              alignment: Alignment.center,
+              child: TextButton(
+                onPressed: () {
+                  context.read<UserBloc>().add(SignOutUser());
+                },
+                child: Text(
+                  'logout'.tr(),
+                  style: AppText.b1!.copyWith(
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -200,59 +199,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildContactsList(List<ContactEntity> contacts) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'contact_support'.tr(),
-            style: AppText.h3b,
-          ),
-          Space.yf(0.8),
-          ...contacts.map(
-            (contact) {
-              return Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.phone_iphone),
-                      const SizedBox(width: 8),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '${contact.number} ',
-                              style: const TextStyle(
-                                color: Colors.black, // Use appropriate color
-                                fontWeight: FontWeight.bold, // You can choose different font styles
-                                fontSize: 16, // Set font size
+      child: Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'contact_support'.tr(),
+              style: AppText.h3b,
+            ),
+            Space.yf(0.8),
+            ...contacts.map(
+              (contact) {
+                return Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Icon(Icons.phone_iphone),
+                        const SizedBox(width: 8),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '${contact.number} ',
+                                style: const TextStyle(
+                                  color: Colors.black, // Use appropriate color
+                                  fontWeight: FontWeight.bold, // You can choose different font styles
+                                  fontSize: 16, // Set font size
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    final Uri phoneUri = Uri(scheme: 'tel', path: contact.number);
+                                    launchUrl(phoneUri);
+                                  },
                               ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  final Uri phoneUri = Uri(scheme: 'tel', path: contact.number);
-                                  launchUrl(phoneUri);
-                                },
-                            ),
-                            TextSpan(
-                              text: contact.name,
-                              style: TextStyle(
-                                color: Colors.grey[700], // A different color for the name
-                                fontSize: 16,
+                              TextSpan(
+                                text: contact.name,
+                                style: TextStyle(
+                                  color: Colors.grey[700], // A different color for the name
+                                  fontSize: 16,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Space.yf(0.6)
-                ],
-              );
-            },
-          ),
-        ],
+                      ],
+                    ),
+                    Space.yf(0.6)
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -9,45 +9,43 @@ class OrderHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppDimensions.normalize(95),
-      child: Stack(
-        children: [
-          Image.asset(
-            AppAssets.header,
-            fit: BoxFit.fill,
-            width: double.infinity,
-          ),
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: AppDimensions.normalize(12),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.50,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'cargo_app'.tr(),
-                    style: AppText.h1b?.copyWith(
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
+    return Stack(
+      children: [
+        Image.asset(
+          AppAssets.header,
+          fit: BoxFit.fill,
+          width: double.infinity,
+        ),
+        Positioned(
+          top: 0,
+          bottom: 0,
+          left: AppDimensions.normalize(12),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.50,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'cargo_app'.tr(),
+                  style: AppText.h1b?.copyWith(
+                    color: Colors.white,
                   ),
-                  Space.yf(0.30),
-                  Text(
-                    'follow_orders_banner'.tr(),
-                    style: AppText.b1?.copyWith(
-                      color: AppColors.yellow,
-                    ),
-                    textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
+                ),
+                Space.yf(0.30),
+                Text(
+                  'follow_orders_banner'.tr(),
+                  style: AppText.b1?.copyWith(
+                    color: AppColors.yellow,
                   ),
-                ],
-              ),
+                  textAlign: TextAlign.start,
+                ),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
