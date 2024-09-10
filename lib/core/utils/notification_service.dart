@@ -103,7 +103,7 @@ class FCMFunctions {
   /// IOS
   Future iosWebPermission() async {
     if (Platform.isIOS || kIsWeb) {
-      NotificationSettings settings = await messaging.requestPermission();
+      /* NotificationSettings settings =  */ await messaging.requestPermission();
     }
   }
 
@@ -259,7 +259,7 @@ Future<void> initFCMFunctions() async {
 
   FirebaseMessaging.onBackgroundMessage(onBackgroundHandler);
 
-  await fcmFunctions.getFCMToken();
+  // final String? token = await fcmFunctions.getFCMToken();
   fcmFunctions.tokenListener();
   fcmFunctions.foreGroundMessageListener();
   await fcmFunctions.subscribeToTopics('notifications');

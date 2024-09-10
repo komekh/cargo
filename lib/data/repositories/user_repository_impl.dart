@@ -19,8 +19,16 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, String>> signIn(params) async {
     if (await networkInfo.isConnected) {
       try {
+        /// login
         final token = await remoteDataSource.signIn(params);
         await localDataSource.saveToken(token);
+
+        /// get FB token
+        final String? fcmToken = await fcmFunctions.getFCMToken();
+        if (fcmToken != null) {
+          await remoteDataSource.registerFBToken(token, fcmToken);
+        }
+
         return Right(token);
       } on Failure catch (failure) {
         return Left(failure);

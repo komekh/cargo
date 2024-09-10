@@ -9,6 +9,7 @@ import '../../data.dart';
 abstract class UserRemoteDataSource {
   Future<String> signIn(SignInParams params);
   Future<User> getUser(String token);
+  Future<void> registerFBToken(String token, String fbToken);
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -55,6 +56,22 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       final user = UserModel.fromJson(json.decode(response.body));
       return user;
     } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<void> registerFBToken(String token, String fbToken) async {
+    final response = await client.post(
+      Uri.parse('$baseUrl/Client/FirebaseToken?token=$fbToken'),
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode != 200) {
       throw ServerException();
     }
   }

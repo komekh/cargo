@@ -6,9 +6,13 @@ import '../../models/models.dart';
 abstract class UserLocalDataSource {
   Future<String> getToken();
 
+  Future<String> getFBToken();
+
   Future<UserModel> getUser();
 
   Future<void> saveToken(String token);
+
+  Future<void> saveFBToken(String token);
 
   Future<void> saveUser(UserModel user);
 
@@ -18,6 +22,7 @@ abstract class UserLocalDataSource {
 }
 
 const cachedToken = 'TOKEN';
+const cachedFBToken = 'FB_TOKEN';
 const cachedUser = 'USER';
 
 class UserLocalDataSourceImpl implements UserLocalDataSource {
@@ -31,8 +36,19 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   }
 
   @override
+  Future<String> getFBToken() async {
+    String? token = sharedPreferences.getString(cachedFBToken) ?? '';
+    return token;
+  }
+
+  @override
   Future<void> saveToken(String token) async {
     await sharedPreferences.setString(cachedToken, token);
+  }
+
+  @override
+  Future<void> saveFBToken(String token) async {
+    await sharedPreferences.setString(cachedFBToken, token);
   }
 
   @override
@@ -62,6 +78,7 @@ class UserLocalDataSourceImpl implements UserLocalDataSource {
   @override
   Future<void> clearCache() async {
     await sharedPreferences.remove(cachedToken);
+    await sharedPreferences.remove(cachedFBToken);
     await sharedPreferences.remove(cachedUser);
   }
 }
