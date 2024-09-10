@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -16,13 +17,13 @@ Future<void> showAuthErrorDialog(BuildContext context) async {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Text(
+                  //   'Error',
+                  //   style: AppText.b1b,
+                  // ),
+                  // Space.yf(.5),
                   Text(
-                    'Error',
-                    style: AppText.b1b,
-                  ),
-                  Space.yf(.5),
-                  Text(
-                    'Try Again!',
+                    'error_message'.tr(),
                     style: AppText.b1,
                   ),
                   Row(
@@ -33,7 +34,7 @@ Future<void> showAuthErrorDialog(BuildContext context) async {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Dismiss',
+                          'OK',
                           style: AppText.h3b?.copyWith(
                             color: AppColors.primary,
                           ),
