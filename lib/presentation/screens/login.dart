@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               ),
 
-                              if (Platform.isAndroid)
+                              if (Platform.isIOS)
                                 Align(
                                   alignment: Alignment.center,
                                   child: Column(
