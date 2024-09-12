@@ -51,5 +51,14 @@
   "error_message": "Näsazlyk ýüze çykdy. Täzeden synanşyp görmegiňizi haýyş edýäris.",
   "follow_orders_banner": "Ýükiňizi 24 sagadyň dowamynda yzarlamak indi elýeterli",
   "order_empty": "Siziň entäk sargydyňyz ýok",
-  "deliver_all": "Ýükleri eltip bermekde siziň ynamly hyzmatdaşyňyz!"
+  "deliver_all": "Ýükleri eltip bermekde siziň ynamly hyzmatdaşyňyz!",
+  "user_already_registered": "Ulanyjy hasaba alnan!",
+  "alert": "Üns beriň",
+  "or": "Ýa-da",
+  "register": "Agza bol",
+  "register_header": "Şahsy otaga girmek üçin",
+  "register_desc": "hasaba alynmagyňyzy haýyş edýäris",
+  "registration_success": "Üstünlikli hasaba alyndy!",
+  "dismiss": "OK",
+  "delete": "Hasaby poz"
 }

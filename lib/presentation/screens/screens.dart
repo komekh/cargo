@@ -7,3 +7,4 @@ export 'root.dart';
 export 'splash.dart';
 export 'splash2.dart';
 export 'image_full.dart';
+export 'register.dart';

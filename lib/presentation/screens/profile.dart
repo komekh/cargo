@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: AppColors.surface,
       body: BlocConsumer<UserBloc, UserState>(
         listener: (context, state) {
-          if (state is UserLoggedOut || state is UserLoggedFail) {
+          if (state is UserLoggedOut || state is UserLoggedFail || state is AccountDeleted) {
             _navigateToLoginScreen(context);
           }
         },
@@ -121,10 +121,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   'logout'.tr(),
                   style: AppText.b1!.copyWith(
-                    color: Colors.red,
+                    color: AppColors.primary,
                   ),
                 ),
               ),
+            ),
+
+            ///gap
+            Space.yf(3),
+
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                if (state is DeleteLoading) {
+                  // Show loader when the state is DeleteLoading
+                  return const Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(), // Loader
+                  );
+                } else {
+                  // Show the delete button in other states
+                  return Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: () {
+                        context.read<UserBloc>().add(DeleteAccount());
+                      },
+                      child: Text(
+                        'delete'.tr(),
+                        style: AppText.b1!.copyWith(
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),

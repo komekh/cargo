@@ -9,22 +9,30 @@ import '../../domain/domain.dart';
 import '../widgets/widgets.dart';
 import 'dart:io' show Platform;
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
 
   void _nextScreen() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('registration_success'.tr()),
+        backgroundColor: Colors.green,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+
     Navigator.of(context).pushNamedAndRemoveUntil(
-      AppRouter.root,
+      AppRouter.login,
       (route) => false,
     );
   }
@@ -126,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'login_header'.tr(),
+                                'register_header'.tr(),
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -136,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Space.yf(0.5),
 
                               Text(
-                                'login_desc'.tr(),
+                                'register_desc'.tr(),
                                 style: const TextStyle(
                                   color: Colors.grey,
                                 ),
@@ -188,8 +196,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
                               BlocConsumer<UserBloc, UserState>(
                                 listener: (context, state) {
-                                  if (state is UserLogged) {
+                                  if (state is UserRegistered) {
                                     _nextScreen();
+                                  } else if (state is UserAlreadyRegistered) {
+                                    showErrorDialog(
+                                      context: context,
+                                      header: 'alert'.tr(),
+                                      body: 'user_already_registered'.tr(),
+                                    );
                                   } else if (state is UserLoggedFail) {
                                     if (state.failure is CredentialFailure) {
                                       showErrorDialog(
@@ -219,8 +233,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                           /// sign in
                                           context.read<UserBloc>().add(
-                                                SignInUser(
-                                                  SignInParams(
+                                                SignUpUser(
+                                                  SignUpParams(
                                                     username: _userNameController.text,
                                                     password: _passwordController.text,
                                                   ),
@@ -228,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               );
                                         }
                                       },
-                                      text: 'start_tracking'.tr(),
+                                      text: 'register'.tr(),
                                     ),
                                   );
                                 },
@@ -267,14 +281,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ),
                                           ),
                                           onPressed: () {
-                                            debugPrint('register');
+                                            debugPrint('login');
                                             Navigator.of(context).pushNamedAndRemoveUntil(
-                                              AppRouter.register,
+                                              AppRouter.login,
                                               (route) => false,
                                             );
                                           },
                                           child: Text(
-                                            'register'.tr(),
+                                            'start_tracking'.tr(),
                                             style: AppText.b1b,
                                           ),
                                         ),

@@ -38,3 +38,23 @@ class UserLoggedOut extends UserState {
   @override
   List<Object> get props => [];
 }
+
+class AccountDeleted extends UserState {
+  @override
+  List<Object> get props => [];
+}
+
+class UserRegistered extends UserState {
+  @override
+  List<Object> get props => [];
+}
+
+class UserAlreadyRegistered extends UserState {
+  @override
+  List<Object> get props => [];
+}
+
+class DeleteLoading extends UserState {
+  @override
+  List<Object> get props => [];
+}

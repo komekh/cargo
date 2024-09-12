@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/configs.dart';
@@ -7,7 +8,7 @@ Future<void> showErrorDialog({
   required BuildContext context,
   required String header,
   required String body,
-  String dismissButtonText = 'Dismiss',
+  String dismissButtonText = 'dismiss',
   VoidCallback? onDismiss,
 }) async {
   return showDialog(
@@ -52,7 +53,7 @@ Future<void> showErrorDialog({
                       }
                     },
                     child: Text(
-                      dismissButtonText,
+                      dismissButtonText.tr(),
                       style: AppText.h3b?.copyWith(
                         color: AppColors.primary,
                       ),

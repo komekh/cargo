@@ -8,6 +8,7 @@ sealed class AppRouter {
   static const String splash = '/splash';
   static const String splash2 = '/splash2';
   static const String login = '/login';
+  static const String register = '/register';
   static const String root = '/root';
   static const String orderDetails = '/order-details';
 
@@ -20,6 +21,8 @@ sealed class AppRouter {
         return MaterialPageRoute(builder: (_) => const Splash2Screen());
       case login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case register:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case root:
         return MaterialPageRoute(builder: (_) => const RootScreen());
       case orderDetails:

@@ -39,6 +39,22 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<Either<Failure, int>> signUp(params) async {
+    if (await networkInfo.isConnected) {
+      try {
+        /// register
+        final code = await remoteDataSource.signUp(params);
+
+        return Right(code);
+      } on Failure catch (failure) {
+        return Left(failure);
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, User>> getCachedUser() async {
     try {
       final user = await localDataSource.getUser();
@@ -55,6 +71,22 @@ class UserRepositoryImpl implements UserRepository {
     try {
       await localDataSource.clearCache();
       return Right(NoParams());
+    } on CacheFailure {
+      return Left(CacheFailure());
+    } catch (error) {
+      return Left(ExceptionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> deleteAccount() async {
+    try {
+      final String token = await localDataSource.getToken();
+      final code = await remoteDataSource.deleteAccount(token);
+      if (code == 204) {
+        await localDataSource.clearCache();
+      }
+      return Right(code);
     } on CacheFailure {
       return Left(CacheFailure());
     } catch (error) {

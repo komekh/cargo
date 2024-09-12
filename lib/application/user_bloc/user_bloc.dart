@@ -14,18 +14,24 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final GetCachedUserUseCase _getCachedUserUseCase;
   final GetRemoteUserUsecase _getRemoteUserUseCase;
   final SignInUseCase _signInUseCase;
+  final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
+  final DeleteAccountUseCase _deleteAccountUseCase;
   UserBloc(
     this._signInUseCase,
+    this._signUpUseCase,
     this._getCachedUserUseCase,
     this._getRemoteUserUseCase,
     this._signOutUseCase,
+    this._deleteAccountUseCase,
   ) : super(UserInitial()) {
     on<SignInUser>(_onSignIn);
+    on<SignUpUser>(_onSignUp);
     on<CheckUser>(_onCheckUser);
     on<GetRemoteUser>(_onGetRemoteUser);
     on<SignOutUser>(_onSignOut);
     on<GetUser>(_onGetUser);
+    on<DeleteAccount>(_onDeleteAccount);
   }
 
   void _onSignIn(SignInUser event, Emitter<UserState> emit) async {
@@ -36,6 +42,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       result.fold(
         (failure) => emit(UserLoggedFail(failure)),
         (token) => emit(UserLogged(token)),
+      );
+    } catch (e) {
+      emit(UserLoggedFail(ExceptionFailure()));
+    }
+  }
+
+  void _onSignUp(SignUpUser event, Emitter<UserState> emit) async {
+    try {
+      emit(UserLoading());
+      // await Future.delayed(const Duration(seconds: 3));
+      final result = await _signUpUseCase(event.params);
+      result.fold(
+        (failure) => emit(UserLoggedFail(failure)),
+        (code) {
+          if (code == 200) {
+            emit(UserRegistered());
+          } else if (code == 409) {
+            emit(UserAlreadyRegistered());
+          } else {
+            emit(UserLoggedFail(ExceptionFailure()));
+          }
+        },
       );
     } catch (e) {
       emit(UserLoggedFail(ExceptionFailure()));
@@ -60,6 +88,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(UserLoading());
       await _signOutUseCase(NoParams());
       emit(UserLoggedOut());
+    } catch (e) {
+      emit(UserLoggedFail(ExceptionFailure()));
+    }
+  }
+
+  void _onDeleteAccount(DeleteAccount event, Emitter<UserState> emit) async {
+    try {
+      emit(DeleteLoading());
+      final result = await _deleteAccountUseCase(NoParams());
+      result.fold(
+        (failure) => emit(_mapFailureToState(failure)),
+        (code) {
+          if (code == 204) {
+            emit(AccountDeleted());
+          } else {
+            emit(UserLoggedFail(ExceptionFailure()));
+          }
+        },
+      );
     } catch (e) {
       emit(UserLoggedFail(ExceptionFailure()));
     }
